@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import cn.ucai.fulihome.R;
+import cn.ucai.fulihome.utils.MFGT;
 
 public class SplashActivity extends AppCompatActivity {
     private final int splash = 2000;
@@ -33,8 +34,8 @@ public class SplashActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    startActivity(new Intent(SplashActivity.this,MainActivity.class));
-                    finish();
+                    MFGT.gotoMainActivity(SplashActivity.this);
+                    MFGT.finish(SplashActivity.this);
                 }
             }
         }).start();
