@@ -40,7 +40,7 @@ public class GoodsDetailsBean {
     private long addTime;
     private String shareUrl;
     private boolean promote;
-    private Properties properties;
+    private PropertiesBean properties;
 
     public GoodsDetailsBean() {
     }
@@ -48,7 +48,7 @@ public class GoodsDetailsBean {
     public GoodsDetailsBean(int id, int goodsId, int catId, String goodsName, String goodsEnglishName,
                             String goodsBrief, String shopPrice, String currencyPrice, String promotePrice,
                             String rankPrice, boolean isPromote, String goodsThumb, String goodsImg,
-                            long addTime, String shareUrl, boolean promote, Properties properties) {
+                            long addTime, String shareUrl, boolean promote, PropertiesBean properties) {
         this.id = id;
         this.goodsId = goodsId;
         this.catId = catId;
@@ -68,11 +68,11 @@ public class GoodsDetailsBean {
         this.properties = properties;
     }
 
-    public Properties getProperties() {
+    public PropertiesBean getProperties() {
         return properties;
     }
 
-    public void setProperties(Properties properties) {
+    public void setProperties(PropertiesBean properties) {
         this.properties = properties;
     }
 
