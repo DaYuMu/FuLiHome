@@ -34,6 +34,7 @@ public class SplashActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                    finish();
                 }
             }
         }).start();
