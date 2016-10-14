@@ -1,7 +1,9 @@
-package cn.ucai.fulihome;
+package cn.ucai.fulihome.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import cn.ucai.fulihome.R;
 
 public class MainActivity extends AppCompatActivity {
 
