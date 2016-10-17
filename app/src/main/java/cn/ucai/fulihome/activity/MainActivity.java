@@ -1,13 +1,16 @@
 package cn.ucai.fulihome.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulihome.R;
+import cn.ucai.fulihome.fragment.NewGoodsFragment;
 import cn.ucai.fulihome.utils.L;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     int index;
     RadioButton[] radioButtons;
+    Fragment[] fragments;
+
+    NewGoodsFragment mNewGoodsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +38,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
+        initFragment();
         L.i("main", "MainActivity.onCreate()");
+    }
+
+    private void initFragment() {
+        fragments = new Fragment[5];
+        mNewGoodsFragment = new NewGoodsFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.rl, mNewGoodsFragment)
+                .show(mNewGoodsFragment)
+                .commit();
     }
 
     private void initView() {
@@ -66,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setRadioButtonStatus() {
-        for (int i=0;i<radioButtons.length;i++) {
+        for (int i = 0; i < radioButtons.length; i++) {
             if (i == index) {
                 radioButtons[i].setChecked(true);
             } else {
