@@ -45,7 +45,7 @@ public class NewGoodsBean {
     private String colorName;
     private String colorCode;
     private String colorUrl;
-    private int addTime;
+    private String addTime;
     private boolean promote;
 
     public NewGoodsBean() {
@@ -54,7 +54,7 @@ public class NewGoodsBean {
     public NewGoodsBean(int id, int goodsId, int catId, String goodsName, String goodsEnglishName,
                         String goodsBrief, String shopPrice, String currencyPrice, String promotePrice,
                         String rankPrice, boolean isPromote, String goodsThumb, String goodsImg,
-                        int colorId, String colorName, String colorCode, String colorUrl, int addTime,
+                        int colorId, String colorName, String colorCode, String colorUrl, String  addTime,
                         boolean promote) {
         this.id = id;
         this.goodsId = goodsId;
@@ -213,11 +213,11 @@ public class NewGoodsBean {
         this.colorUrl = colorUrl;
     }
 
-    public int getAddTime() {
+    public String getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(int addTime) {
+    public void setAddTime(String addTime) {
         this.addTime = addTime;
     }
 
