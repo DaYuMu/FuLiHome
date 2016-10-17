@@ -17,16 +17,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <RadioButton
+                android:id="@+id/btnNewGoods"
                 style="@style/MenuStyle"
                 android:drawableTop="@drawable/selector_menu_item_new_good"
                 android:text="新品"/>
 
             <RadioButton
+                android:id="@+id/btnBoutique"
                 style="@style/MenuStyle"
                 android:drawableTop="@drawable/selector_menu_item_boutique"
                 android:text="精品"/>
 
             <RadioButton
+                android:id="@+id/btnCategory"
                 style="@style/MenuStyle"
                 android:drawableTop="@drawable/selector_menu_item_category"
                 android:text="分类"/>
@@ -40,20 +43,21 @@
                 android:layout_height="wrap_content">
 
                 <RadioButton
-                    android:id="@+id/Shop"
+                    android:id="@+id/btnCart"
                     style="@style/MenuStyle"
                     android:drawableTop="@drawable/selector_menu_item_cart"
                     android:text="购物车" />
 
                 <TextView
-                    android:layout_alignRight="@+id/Shop"
+                    android:id="@+id/tvCart"
+                    android:layout_alignRight="@+id/btnCart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10" />
 
             </RelativeLayout>
             <RadioButton
-
+                android:id="@+id/btnPersonal"
                 style="@style/MenuStyle"
                 android:drawableTop="@drawable/selector_menu_item_personal_center"
                 android:text="收藏"/>
