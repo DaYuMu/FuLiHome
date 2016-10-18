@@ -27,11 +27,22 @@ public class NewGoodsAdapter extends Adapter {
 
     Context mContext;
     ArrayList<NewGoodsBean> mlist;
+    boolean isMore;//  用于判断是否还有更多数据。
 
     public NewGoodsAdapter(Context context, ArrayList<NewGoodsBean> list) {
         mContext = context;
         mlist = new ArrayList<>();
         mlist.addAll(list);
+    }
+//   设置isMore的get、set方法。
+    public boolean isMore() {
+        return isMore;
+    }
+
+    public void setMore(boolean more) {
+        isMore = more;
+        //  刷新数据
+        notifyDataSetChanged();
     }
 
     @Override
@@ -49,7 +60,8 @@ public class NewGoodsAdapter extends Adapter {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (getItemViewType(position)==I.TYPE_FOOTER) {
-
+            FooterHolder footerHolder = (FooterHolder) holder;
+            footerHolder.tvFooter.setText(getFooterText());
         } else {
             NewGoodsHolder newGoodsHolder = (NewGoodsHolder) holder;
             NewGoodsBean newGoodsBean = mlist.get(position);
@@ -60,6 +72,10 @@ public class NewGoodsAdapter extends Adapter {
 
         }
 
+    }
+
+    private int getFooterText() {
+        return isMore?R.string.load_more:R.string.no_more;
     }
 
     @Override

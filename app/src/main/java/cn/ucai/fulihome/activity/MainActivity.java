@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initView();
         initFragment();
-        L.i("main", "MainActivity.onCreate()");
+        L.e("main", "MainActivity.onCreate()");
     }
 
     private void initFragment() {

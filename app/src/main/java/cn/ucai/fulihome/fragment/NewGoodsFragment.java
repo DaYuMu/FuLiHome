@@ -35,6 +35,7 @@ public class NewGoodsFragment extends Fragment {
     MainActivity context;
     NewGoodsAdapter newGoodsAdapter;
     ArrayList<NewGoodsBean> newgoodslist;
+    GridLayoutManager gridLayoutManager;
 
     int pageId=1;
     @BindView(R.id.tvNewGoods)
@@ -63,9 +64,10 @@ public class NewGoodsFragment extends Fragment {
             @Override
             public void onSuccess(NewGoodsBean[] result) {
                 //  设置刷新中··· 为不再刷新，不可见状态
-                SwipeRefreshLayout.setVisibility(View.GONE);
-                fragmentRecyclerViewNewGoods.setEnabled(false);
-
+                tvNewGoods.setVisibility(View.GONE);
+                SwipeRefreshLayout.setEnabled(false);
+                //  设置上拉加载效果
+                newGoodsAdapter.setMore(true);
                 if (result != null && result.length > 0) {
                     ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
                     newGoodsAdapter.initData(list);
@@ -75,10 +77,10 @@ public class NewGoodsFragment extends Fragment {
             @Override
             public void onError(String error) {
                 //  设置刷新中··· 为不再刷新，不可见状态
-                SwipeRefreshLayout.setVisibility(View.GONE);
-                fragmentRecyclerViewNewGoods.setEnabled(false);
+                tvNewGoods.setVisibility(View.GONE);
+                SwipeRefreshLayout.setEnabled(false);
                 //  设置显示数据异常
-                CommonUtils.showLongToast("数据异常，请稍后再试");
+                CommonUtils.showLongToast(error);
                 L.e("main" + error);
             }
 
@@ -92,7 +94,7 @@ public class NewGoodsFragment extends Fragment {
                 getResources().getColor(R.color.google_red),
                 getResources().getColor(R.color.google_yellow)
         );
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, I.COLUM_NUM);
+        gridLayoutManager = new GridLayoutManager(context, I.COLUM_NUM);
         fragmentRecyclerViewNewGoods.setLayoutManager(gridLayoutManager);
         fragmentRecyclerViewNewGoods.setHasFixedSize(true);
         fragmentRecyclerViewNewGoods.setAdapter(newGoodsAdapter);
