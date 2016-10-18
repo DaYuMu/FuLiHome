@@ -22,6 +22,7 @@ import cn.ucai.fulihome.adapter.NewGoodsAdapter;
 import cn.ucai.fulihome.bean.NewGoodsBean;
 import cn.ucai.fulihome.net.NetDao;
 import cn.ucai.fulihome.net.OkHttpUtils;
+import cn.ucai.fulihome.utils.CommonUtils;
 import cn.ucai.fulihome.utils.ConvertUtils;
 import cn.ucai.fulihome.utils.L;
 
@@ -61,6 +62,10 @@ public class NewGoodsFragment extends Fragment {
         NetDao.downloadNewGoods(context, pageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean[]>() {
             @Override
             public void onSuccess(NewGoodsBean[] result) {
+                //  设置刷新中··· 为不再刷新，不可见状态
+                SwipeRefreshLayout.setVisibility(View.GONE);
+                fragmentRecyclerViewNewGoods.setEnabled(false);
+
                 if (result != null && result.length > 0) {
                     ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
                     newGoodsAdapter.initData(list);
@@ -69,6 +74,11 @@ public class NewGoodsFragment extends Fragment {
 
             @Override
             public void onError(String error) {
+                //  设置刷新中··· 为不再刷新，不可见状态
+                SwipeRefreshLayout.setVisibility(View.GONE);
+                fragmentRecyclerViewNewGoods.setEnabled(false);
+                //  设置显示数据异常
+                CommonUtils.showLongToast("数据异常，请稍后再试");
                 L.e("main" + error);
             }
 
