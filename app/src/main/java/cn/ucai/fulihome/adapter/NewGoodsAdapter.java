@@ -45,6 +45,11 @@ public class NewGoodsAdapter extends Adapter {
         notifyDataSetChanged();
     }
 
+    public void addDate(ArrayList<NewGoodsBean> list) {
+        mlist.addAll(list);
+        notifyDataSetChanged();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder holder = null;
