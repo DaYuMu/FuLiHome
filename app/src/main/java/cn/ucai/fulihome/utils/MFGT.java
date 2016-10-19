@@ -3,11 +3,16 @@ package cn.ucai.fulihome.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
+import cn.ucai.fulihome.activity.BoutiqueChildActivity;
 import cn.ucai.fulihome.activity.MainActivity;
 import cn.ucai.fulihome.activity.NewGoodsDetailsActivity;
+import cn.ucai.fulihome.bean.BoutiqueBean;
 
 /**
  * 本方法为活动中的跳转
@@ -38,5 +43,11 @@ public class MFGT {
         ((Activity)context).overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
     }
 
-
+    public static void gotoBoutiqueChildActivity(Context context, int catid){
+        Intent intent = new Intent();
+        intent.setClass(context, BoutiqueChildActivity.class);
+        intent.putExtra(I.Boutique.CAT_ID,catid );
+        startActivity(context,intent);
+    }
 }
+

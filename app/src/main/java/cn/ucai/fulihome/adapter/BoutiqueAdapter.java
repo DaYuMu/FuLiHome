@@ -14,10 +14,13 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.BoutiqueBean;
 import cn.ucai.fulihome.utils.ImageLoader;
+import cn.ucai.fulihome.utils.L;
+import cn.ucai.fulihome.utils.MFGT;
 import cn.ucai.fulihome.view.FooterHolder;
 
 
@@ -48,7 +51,7 @@ public class BoutiqueAdapter extends Adapter {
         boutiqueHolder.BoutiqueTitle.setText(boutiqueBean.getTitle());
         boutiqueHolder.BoutiqueGoodsName.setText(boutiqueBean.getName());
         boutiqueHolder.BoutiqueDetails.setText(boutiqueBean.getDescription());
-
+        boutiqueHolder.BoutiqueRelativeLayout.setTag(boutiqueBean.getId());
 
     }
 
@@ -84,6 +87,12 @@ public class BoutiqueAdapter extends Adapter {
         BoutiqueHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+        }
+
+        @OnClick(R.id.BoutiqueRelativeLayout)
+        public void onBoutiqueClick() {
+            int catId = (int) BoutiqueRelativeLayout.getTag();
+            MFGT.gotoBoutiqueChildActivity(mContext,catId);
         }
     }
 }
