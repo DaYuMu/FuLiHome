@@ -23,7 +23,7 @@ import cn.ucai.fulihome.view.FlowIndicator;
 import cn.ucai.fulihome.view.SlideAutoLoopView;
 
 
-public class NewGoodsDetailsActivity extends AppCompatActivity {
+public class NewGoodsDetailsActivity extends BaseActivity {
     @BindView(R.id.agoPrice)
     TextView agoPrice;
     @BindView(R.id.currentPrice)
@@ -44,7 +44,7 @@ public class NewGoodsDetailsActivity extends AppCompatActivity {
     GoodsDetailsBean detailsBean;
    int position;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goods_details);
         ButterKnife.bind(this);
@@ -53,7 +53,13 @@ public class NewGoodsDetailsActivity extends AppCompatActivity {
         initData();
     }
 
-    private void initData() {
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
         NetDao.downloadGoodsDetails(this, position, new OkHttpUtils.OnCompleteListener<GoodsDetailsBean>() {
             @Override
             public void onSuccess(GoodsDetailsBean result) {
@@ -75,22 +81,20 @@ public class NewGoodsDetailsActivity extends AppCompatActivity {
 
             private int getAlbumCount(GoodsDetailsBean detailsBean) {
                 if (detailsBean.getProperties() != null && detailsBean.getProperties().length > 0) {
-                    return detailsBean.getProperties().length;
+                    return detailsBean.getProperties()[0].getAlbums().length;
                 }
                 return 0;
             }
 
             private String[] getAlbumImgUrl(GoodsDetailsBean detailsBean) {
-//                L.e("main","NewGoodsDateilsActivity方法"+detailsBean.toString());
                 String[] url = new String[]{};
-                if (detailsBean.getProperties() != null && detailsBean.getProperties().length > 0) {
+                if (detailsBean.getProperties()!= null && detailsBean.getProperties().length > 0) {
                     Albums[] albums = detailsBean.getProperties()[0].getAlbums();
                     url = new String[albums.length];
                     for (int i=0;i<albums.length;i++) {
                         url[i] = albums[i].getImgUrl();
                     }
                 }
-                L.e("main","url="+url);
                 return url;
             }
 
@@ -100,6 +104,11 @@ public class NewGoodsDetailsActivity extends AppCompatActivity {
                 CommonUtils.showShortToast(error);
             }
         });
+    }
+
+    @Override
+    protected void setListener() {
+
     }
 
     @OnClick(R.id.ivTitleBack)
