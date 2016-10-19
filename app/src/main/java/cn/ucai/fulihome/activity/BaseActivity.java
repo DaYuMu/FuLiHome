@@ -12,10 +12,11 @@ import cn.ucai.fulihome.utils.MFGT;
 public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         initView();
         initData();
         setListener();
-        super.onCreate(savedInstanceState);
+
     }
 
     protected abstract void initView();

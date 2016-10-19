@@ -3,15 +3,12 @@ package cn.ucai.fulihome.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulihome.R;
-import cn.ucai.fulihome.adapter.BoutiqueAdapter;
 import cn.ucai.fulihome.fragment.BoutiqueFragment;
 import cn.ucai.fulihome.fragment.NewGoodsFragment;
 import cn.ucai.fulihome.utils.L;
@@ -40,26 +37,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         L.e("main", "MainActivity.onCreate()");
+        super.onCreate(savedInstanceState);
+        L.e("main", "MainActivity.onCreate()完成");
     }
 
-    private void initFragment() {
-        fragments = new Fragment[5];
-        mNewGoodsFragment = new NewGoodsFragment();
-        mboutiqueFragment = new BoutiqueFragment();
-        fragments[0] = mNewGoodsFragment;
-        fragments[1] = mboutiqueFragment;
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.rl, mNewGoodsFragment)
-                .add(R.id.rl,mboutiqueFragment)
-                .hide(mboutiqueFragment)
-                .show(mNewGoodsFragment)
-                .commit();
-    }
+
 
     @Override
     protected void initView() {
@@ -75,7 +60,20 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
         initFragment();
     }
-
+    private void initFragment() {
+        fragments = new Fragment[5];
+        mNewGoodsFragment = new NewGoodsFragment();
+        mboutiqueFragment = new BoutiqueFragment();
+        fragments[0] = mNewGoodsFragment;
+        fragments[1] = mboutiqueFragment;
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.rl, mNewGoodsFragment)
+                .add(R.id.rl,mboutiqueFragment)
+                .hide(mboutiqueFragment)
+                .show(mNewGoodsFragment)
+                .commit();
+    }
     @Override
     protected void setListener() {
 

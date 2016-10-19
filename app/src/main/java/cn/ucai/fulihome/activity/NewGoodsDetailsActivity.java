@@ -45,12 +45,11 @@ public class NewGoodsDetailsActivity extends BaseActivity {
    int position;
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goods_details);
         ButterKnife.bind(this);
         Intent intent = getIntent();
         position = intent.getIntExtra(I.Goods.KEY_GOODS_ID, 0);
-        initData();
+        super.onCreate(savedInstanceState);
     }
 
     @Override
