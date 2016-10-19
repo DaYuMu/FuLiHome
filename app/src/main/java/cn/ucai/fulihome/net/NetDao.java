@@ -3,6 +3,7 @@ package cn.ucai.fulihome.net;
 import android.content.Context;
 
 import cn.ucai.fulihome.I;
+import cn.ucai.fulihome.bean.BoutiqueBean;
 import cn.ucai.fulihome.bean.GoodsDetailsBean;
 import cn.ucai.fulihome.bean.NewGoodsBean;
 import cn.ucai.fulihome.utils.L;
@@ -12,6 +13,12 @@ import cn.ucai.fulihome.utils.L;
  * 商品新品的网络请求
  */
 public class NetDao {
+    /**
+     * 加载新品的首页数据
+     * @param context
+     * @param pageId
+     * @param listener
+     */
     public static void downloadNewGoods(Context context, int pageId,
                                         OkHttpUtils.OnCompleteListener<NewGoodsBean[]> listener) {
         OkHttpUtils<NewGoodsBean[]> utils = new OkHttpUtils(context);
@@ -24,6 +31,12 @@ public class NetDao {
                 .execute(listener);
     }
 
+    /**
+     * 加载新品页的商品详情的数据
+     * @param context
+     * @param position
+     * @param listener
+     */
     public static void downloadGoodsDetails(Context context, int position, OkHttpUtils.OnCompleteListener<GoodsDetailsBean> listener) {
         L.e("main","NetDao.downloadGoodsDetails()方法开始运行");
         OkHttpUtils<GoodsDetailsBean> utils = new OkHttpUtils<>(context);
@@ -32,5 +45,17 @@ public class NetDao {
                 .targetClass(GoodsDetailsBean.class)
                 .execute(listener);
         L.e("main","NetDao.downloadGoodsDetails()方法运行结束");
+    }
+
+    /**
+     * 加载精选首页的数据
+     * @param context
+     * @param listener
+     */
+    public static void downloadBoutique(Context context, OkHttpUtils.OnCompleteListener<BoutiqueBean[]> listener) {
+        OkHttpUtils<BoutiqueBean[]> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_FIND_BOUTIQUES)
+                .targetClass(BoutiqueBean[].class)
+                .execute(listener);
     }
 }
