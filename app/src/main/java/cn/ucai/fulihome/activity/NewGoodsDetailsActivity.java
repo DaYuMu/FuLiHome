@@ -19,6 +19,7 @@ import cn.ucai.fulihome.net.NetDao;
 import cn.ucai.fulihome.net.OkHttpUtils;
 import cn.ucai.fulihome.utils.CommonUtils;
 import cn.ucai.fulihome.utils.L;
+import cn.ucai.fulihome.utils.MFGT;
 import cn.ucai.fulihome.view.FlowIndicator;
 import cn.ucai.fulihome.view.SlideAutoLoopView;
 
@@ -114,7 +115,7 @@ public class NewGoodsDetailsActivity extends BaseActivity {
 
     @OnClick(R.id.ivTitleBack)
     public void onBackClick() {
-        finish();
+        MFGT.finish(this);
     }
 
 }
