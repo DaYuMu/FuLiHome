@@ -11,10 +11,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- icon，，，为项目的图标，可自行更改 -->
-        <activity android:name=".activity.MainActivity">
 
-        </activity>
+        <!-- icon，，，为项目的图标，可自行更改 -->
+        <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.NewGoodsDetailsActivity"></activity>
     </application>
 
 </manifest>
