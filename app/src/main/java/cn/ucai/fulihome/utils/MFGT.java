@@ -1,10 +1,13 @@
 package cn.ucai.fulihome.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
+import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.activity.MainActivity;
+import cn.ucai.fulihome.activity.NewGoodsDetailsActivity;
 
 /**
  * 本方法为活动中的跳转
@@ -21,7 +24,19 @@ public class MFGT {
     public static void startActivity(Activity context,Class<?> cls){
         Intent intent = new Intent();
         intent.setClass(context,cls);
-        context.startActivity(intent);
-        context.overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+        startActivity(context,intent);
     }
+    //  去往NewGoodsDetailsActivity的方法，要传入一个商品的id
+    public static void gotoNewGoodsDetailsActivity(Context context, int goodsid){
+        Intent intent = new Intent();
+        intent.setClass(context, NewGoodsDetailsActivity.class);
+        intent.putExtra(I.GoodsDetails.KEY_GOODS_ID, goodsid);
+        startActivity(context,intent);
+    }
+    public static void startActivity(Context context,Intent intent){
+        context.startActivity(intent);
+        ((Activity)context).overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+    }
+
+
 }

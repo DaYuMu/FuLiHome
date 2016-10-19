@@ -8,16 +8,19 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.NewGoodsBean;
 import cn.ucai.fulihome.utils.ImageLoader;
+import cn.ucai.fulihome.utils.MFGT;
 
 
 /**
@@ -74,7 +77,7 @@ public class NewGoodsAdapter extends Adapter {
             ImageLoader.downloadImg(mContext,newGoodsHolder.ivNewGoods,newGoodsBean.getGoodsThumb());
             newGoodsHolder.tvNewGoodsName.setText(newGoodsBean.getGoodsName());
             newGoodsHolder.tvNewGoodsPrive.setText(newGoodsBean.getCurrencyPrice());
-
+            newGoodsHolder.layout.setTag(position);//传position
         }
 
     }
@@ -115,17 +118,25 @@ public class NewGoodsAdapter extends Adapter {
         }
     }
 
-    static class NewGoodsHolder extends ViewHolder{
+     class NewGoodsHolder extends ViewHolder{
         @BindView(R.id.ivNewGoods)
         ImageView ivNewGoods;
         @BindView(R.id.tvNewGoodsName)
         TextView tvNewGoodsName;
         @BindView(R.id.tvNewGoodsPrive)
         TextView tvNewGoodsPrive;
+         @BindView(R.id.layout)
+         LinearLayout layout;
 
         NewGoodsHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
+        @OnClick(R.id.layout)
+         public  void  GTGoodsDatailsActivity(){
+            int position= (int) layout.getTag();
+            MFGT.gotoNewGoodsDetailsActivity(mContext,position);
+        }
+
     }
 }
