@@ -15,12 +15,14 @@ import butterknife.OnClick;
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.adapter.NewGoodsAdapter;
+import cn.ucai.fulihome.bean.BoutiqueBean;
 import cn.ucai.fulihome.bean.NewGoodsBean;
 import cn.ucai.fulihome.net.NetDao;
 import cn.ucai.fulihome.net.OkHttpUtils;
 import cn.ucai.fulihome.utils.CommonUtils;
 import cn.ucai.fulihome.utils.ConvertUtils;
 import cn.ucai.fulihome.utils.L;
+import cn.ucai.fulihome.utils.MFGT;
 import cn.ucai.fulihome.view.SpaceItemDecoration;
 
 public class BoutiqueChildActivity extends BaseActivity {
@@ -38,15 +40,15 @@ public class BoutiqueChildActivity extends BaseActivity {
     NewGoodsAdapter newGoodsAdapter;
     ArrayList<NewGoodsBean> newgoodslist;
     int pageId = 1;
-    int catId;
+    BoutiqueBean boutiqueBean;
     GridLayoutManager gridLayoutManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_boutique_child);
         ButterKnife.bind(this);
-        catId = getIntent().getIntExtra(I.Boutique.CAT_ID, 0);
-        if (catId == 0) {
+        boutiqueBean = (BoutiqueBean) getIntent().getSerializableExtra(I.Boutique.CAT_ID);
+        if (boutiqueBean == null) {
             finish();
         }
         context = this;
@@ -68,6 +70,7 @@ public class BoutiqueChildActivity extends BaseActivity {
         fragmentRecyclerViewNewGoods.setHasFixedSize(true);
         fragmentRecyclerViewNewGoods.setAdapter(newGoodsAdapter);
         fragmentRecyclerViewNewGoods.addItemDecoration(new SpaceItemDecoration(16));
+        NewGoodsTitle.setText(boutiqueBean.getTitle());
     }
 
 
@@ -127,7 +130,7 @@ public class BoutiqueChildActivity extends BaseActivity {
     }
 
     private void downloadNewGoods(final int action) {
-        NetDao.downloadNewGoods(context, catId,pageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean[]>() {
+        NetDao.downloadNewGoods(context, boutiqueBean.getId(),pageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean[]>() {
             @Override
             public void onSuccess(NewGoodsBean[] result) {
                 //  设置刷新中··· 为不再刷新，不可见状态
@@ -167,6 +170,6 @@ public class BoutiqueChildActivity extends BaseActivity {
 
     @OnClick(R.id.ivTitleBack)
     public void onClick() {
-
+        MFGT.finish(this);
     }
 }

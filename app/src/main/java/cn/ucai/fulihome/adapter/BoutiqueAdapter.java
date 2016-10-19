@@ -51,7 +51,8 @@ public class BoutiqueAdapter extends Adapter {
         boutiqueHolder.BoutiqueTitle.setText(boutiqueBean.getTitle());
         boutiqueHolder.BoutiqueGoodsName.setText(boutiqueBean.getName());
         boutiqueHolder.BoutiqueDetails.setText(boutiqueBean.getDescription());
-        boutiqueHolder.BoutiqueRelativeLayout.setTag(boutiqueBean.getId());
+        //                                     Tag可以是Object类型。
+        boutiqueHolder.BoutiqueRelativeLayout.setTag(boutiqueBean);
 
     }
 
@@ -91,8 +92,8 @@ public class BoutiqueAdapter extends Adapter {
 
         @OnClick(R.id.BoutiqueRelativeLayout)
         public void onBoutiqueClick() {
-            int catId = (int) BoutiqueRelativeLayout.getTag();
-            MFGT.gotoBoutiqueChildActivity(mContext,catId);
+            BoutiqueBean boutiqueBean = (BoutiqueBean) BoutiqueRelativeLayout.getTag();
+            MFGT.gotoBoutiqueChildActivity(mContext,boutiqueBean);
         }
     }
 }
