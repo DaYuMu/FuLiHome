@@ -27,7 +27,6 @@ import cn.ucai.fulihome.view.FooterHolder;
 public class BoutiqueAdapter extends Adapter {
     Context mContext;
     ArrayList<BoutiqueBean> mList;
-    boolean isMore;
 
     public BoutiqueAdapter(Context mContext, ArrayList<BoutiqueBean> List) {
         this.mContext = mContext;
@@ -37,48 +36,28 @@ public class BoutiqueAdapter extends Adapter {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ViewHolder holder = null;
-        if (viewType == I.TYPE_FOOTER) {
-                                               //  为了避免布局的不居中
-            holder = new FooterHolder(LayoutInflater.from(mContext).inflate(R.layout.item_footer, null));
-        } else {
-            holder = new BoutiqueHolder(LayoutInflater.from(mContext).inflate(R.layout.item_boutique, null));
-        }
+        ViewHolder holder = new BoutiqueHolder(LayoutInflater.from(mContext).inflate(R.layout.item_boutique, null));
         return holder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (getItemViewType(position) == I.TYPE_FOOTER) {
-            FooterHolder footerHolder = (FooterHolder) holder;
-            footerHolder.tvFooter.setText(getFooterText());
-        }
-            BoutiqueHolder boutiqueHolder = (BoutiqueHolder) holder;
-            BoutiqueBean boutiqueBean = mList.get(position);
-            ImageLoader.downloadImg(mContext,((BoutiqueHolder) holder).ivBoutique,boutiqueBean.getImageurl());
-            boutiqueHolder.BoutiqueTitle.setText(boutiqueBean.getTitle());
-            boutiqueHolder.BoutiqueGoodsName.setText(boutiqueBean.getName());
-            boutiqueHolder.BoutiqueDetails.setText(boutiqueBean.getDescription());
+        BoutiqueHolder boutiqueHolder = (BoutiqueHolder) holder;
+        BoutiqueBean boutiqueBean = mList.get(position);
+        ImageLoader.downloadImg(mContext,((BoutiqueHolder) holder).ivBoutique,boutiqueBean.getImageurl());
+        boutiqueHolder.BoutiqueTitle.setText(boutiqueBean.getTitle());
+        boutiqueHolder.BoutiqueGoodsName.setText(boutiqueBean.getName());
+        boutiqueHolder.BoutiqueDetails.setText(boutiqueBean.getDescription());
 
 
     }
 
-    private int getFooterText() {
-        return isMore?R.string.load_more:R.string.no_more;
-    }
 
     @Override
     public int getItemCount() {
-        return mList == null ? 1 : mList.size() + 1;
+        return mList == null ? 0 : mList.size() ;
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (position == getItemCount() - 1) {
-            return I.TYPE_FOOTER;
-        }
-        return I.TYPE_ITEM;
-    }
 
     public void initData(ArrayList<BoutiqueBean> list) {
         if (mList != null) {
@@ -87,9 +66,6 @@ public class BoutiqueAdapter extends Adapter {
         }
     }
 
-    public void addDate(ArrayList<BoutiqueBean> list) {
-        mList.addAll(list);
-    }
 
 
     //  继承ViewHolder，设置为一般方法。

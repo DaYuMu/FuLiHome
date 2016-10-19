@@ -55,39 +55,43 @@ public class BoutiqueFragment extends Fragment {
         boutiqueAdapter = new BoutiqueAdapter(mContext,mList);
         initView();
         initData();
+        setListener();
         return layout;
     }
 
-    private void initData() {
-        downloadBoutique(I.ACTION_DOWNLOAD);
+    private void setListener() {
+        setPullDownListener();
     }
 
-    private void downloadBoutique(final int action) {
+    /**
+     * 下拉刷新的方法
+     */
+    private void setPullDownListener() {
+        SwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                SwipeRefreshLayout.setRefreshing(true);
+                tvNewGoods.setVisibility(View.VISIBLE);
+                downloadBoutique();
+            }
+        });
+    }
+
+    private void initData() {
+        downloadBoutique();
+    }
+
+    private void downloadBoutique() {
         NetDao.downloadBoutique(mContext, new OkHttpUtils.OnCompleteListener<BoutiqueBean[]>() {
             @Override
             public void onSuccess(BoutiqueBean[] result) {
                 //  设置刷新中··· 为不再刷新，不可见状态
                 tvNewGoods.setVisibility(View.GONE);
                 SwipeRefreshLayout.setEnabled(false);
-                /*//  设置上拉加载效果
-                boutiqueAdapter.setMore(true);*/
                 if (result != null && result.length > 0) {
                     ArrayList<BoutiqueBean> list = ConvertUtils.array2List(result);
-                    if (action == I.ACTION_DOWNLOAD || action == I.ACTION_PULL_DOWN) {
                         boutiqueAdapter.initData(list);
-                    } else {
-                        boutiqueAdapter.addDate(list);
-                    }
-                    /*// 判断本次下载的数据有几个，，注意别混乱
-                    if (list.size() < I.PAGE_SIZE_DEFAULT) {
-                        boutiqueAdapter.setMore(false);
-                    }
-                } else {
-                    boutiqueAdapter.setMore(false);
-                }*/
                 }
-
-
             }
 
             @Override
@@ -100,7 +104,7 @@ public class BoutiqueFragment extends Fragment {
             }
         });
     }
-            private void initView() {
+    private void initView() {
         SwipeRefreshLayout.setColorSchemeColors(
                 getResources().getColor(R.color.google_blue),
                 getResources().getColor(R.color.google_green),
