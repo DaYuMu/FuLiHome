@@ -116,7 +116,7 @@ public class NewGoodsFragment extends BaseFragment {
     }
 
     private void downloadNewGoods(final int action) {
-        NetDao.downloadNewGoods(context, pageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean[]>() {
+        NetDao.downloadNewGoods(context, I.CAT_ID,pageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean[]>() {
             @Override
             public void onSuccess(NewGoodsBean[] result) {
                 //  设置刷新中··· 为不再刷新，不可见状态

@@ -19,11 +19,11 @@ public class NetDao {
      * @param pageId
      * @param listener
      */
-    public static void downloadNewGoods(Context context, int pageId,
+    public static void downloadNewGoods(Context context, int catId,int pageId,
                                         OkHttpUtils.OnCompleteListener<NewGoodsBean[]> listener) {
         OkHttpUtils<NewGoodsBean[]> utils = new OkHttpUtils(context);
         utils.setRequestUrl(I.REQUEST_FIND_NEW_BOUTIQUE_GOODS)//  请求发现新品精品的商品
-                .addParam(I.NewAndBoutiqueGoods.CAT_ID,String.valueOf(I.CAT_ID))
+                .addParam(I.NewAndBoutiqueGoods.CAT_ID,String.valueOf(catId))
                 .addParam(I.PAGE_ID,String.valueOf(pageId))
                 //  默认的每页的尺寸
                 .addParam(I.PAGE_SIZE,String.valueOf(I.PAGE_SIZE_DEFAULT))
