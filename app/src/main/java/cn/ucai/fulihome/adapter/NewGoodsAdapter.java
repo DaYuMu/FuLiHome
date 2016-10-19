@@ -78,7 +78,8 @@ public class NewGoodsAdapter extends Adapter {
             ImageLoader.downloadImg(mContext,newGoodsHolder.ivNewGoods,newGoodsBean.getGoodsThumb());
             newGoodsHolder.tvNewGoodsName.setText(newGoodsBean.getGoodsName());
             newGoodsHolder.tvNewGoodsPrive.setText(newGoodsBean.getCurrencyPrice());
-            newGoodsHolder.layout.setTag(position);//传position
+            //                                     注意传过来的goodsid
+            newGoodsHolder.layout.setTag(newGoodsBean.getGoodsId());//传position
         }
 
     }

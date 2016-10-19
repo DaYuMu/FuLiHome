@@ -41,7 +41,7 @@ public class NetDao {
         L.e("main","NetDao.downloadGoodsDetails()方法开始运行");
         OkHttpUtils<GoodsDetailsBean> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_FIND_GOOD_DETAILS)
-                .addParam(I.Goods.KEY_GOODS_ID,String.valueOf(7677))
+                .addParam(I.Goods.KEY_GOODS_ID,String.valueOf(position))
                 .targetClass(GoodsDetailsBean.class)
                 .execute(listener);
         L.e("main","NetDao.downloadGoodsDetails()方法运行结束");

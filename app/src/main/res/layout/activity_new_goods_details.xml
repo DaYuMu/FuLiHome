@@ -106,7 +106,7 @@
         app:r="5dp"
         app:space="3dp"/>
 
-    <WebView
+    <TextView
         android:layout_below="@id/FlowImage"
         android:id="@+id/NewGoodsDetails"
         android:layout_marginTop="5dp"

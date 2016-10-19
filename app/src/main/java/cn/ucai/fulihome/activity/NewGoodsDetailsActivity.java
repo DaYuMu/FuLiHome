@@ -39,7 +39,7 @@ public class NewGoodsDetailsActivity extends BaseActivity {
     @BindView(R.id.FlowImage)
     FlowIndicator FlowImage;
     @BindView(R.id.NewGoodsDetails)
-    WebView NewGoodsDetails;
+    TextView NewGoodsDetails;
 
     GoodsDetailsBean detailsBean;
    int position;
@@ -74,8 +74,10 @@ public class NewGoodsDetailsActivity extends BaseActivity {
                 currentPrice.setText(result.getCurrencyPrice());
                 EnglishName.setText(result.getGoodsEnglishName());
                 ChinaName.setText(result.getGoodsName());
-                SlideImage.startPlayLoop(FlowImage,getAlbumImgUrl(detailsBean),getAlbumCount(detailsBean));
+                NewGoodsDetails.setText(result.getGoodsBrief());
                 L.e("main","商品的详情加载完成");
+                SlideImage.startPlayLoop(FlowImage,getAlbumImgUrl(result),getAlbumCount(result));
+
             }
 
             private int getAlbumCount(GoodsDetailsBean detailsBean) {
