@@ -3,7 +3,9 @@ package cn.ucai.fulihome.net;
 import android.content.Context;
 
 import cn.ucai.fulihome.I;
+import cn.ucai.fulihome.bean.GoodsDetailsBean;
 import cn.ucai.fulihome.bean.NewGoodsBean;
+import cn.ucai.fulihome.utils.L;
 
 /**
  * Created by Administrator on 2016/10/17 0017.
@@ -20,5 +22,15 @@ public class NetDao {
                 .addParam(I.PAGE_SIZE,String.valueOf(I.PAGE_SIZE_DEFAULT))
                 .targetClass(NewGoodsBean[].class)
                 .execute(listener);
+    }
+
+    public static void downloadGoodsDetails(Context context, int position, OkHttpUtils.OnCompleteListener<GoodsDetailsBean> listener) {
+        L.e("main","NetDao.downloadGoodsDetails()方法开始运行");
+        OkHttpUtils<GoodsDetailsBean> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_FIND_GOOD_DETAILS)
+                .addParam(I.Goods.KEY_GOODS_ID,String.valueOf(7677))
+                .targetClass(GoodsDetailsBean.class)
+                .execute(listener);
+        L.e("main","NetDao.downloadGoodsDetails()方法运行结束");
     }
 }
