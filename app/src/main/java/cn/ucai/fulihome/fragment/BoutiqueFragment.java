@@ -32,7 +32,7 @@ import cn.ucai.fulihome.view.SpaceItemDecoration;
 /**
  * Created by Administrator on 2016/10/19 0019.
  */
-public class BoutiqueFragment extends Fragment {
+public class BoutiqueFragment extends BaseFragment {
     @BindView(R.id.tvNewGoods)
     TextView tvNewGoods;
     @BindView(R.id.fragmentRecyclerViewNewGoods)
@@ -53,13 +53,14 @@ public class BoutiqueFragment extends Fragment {
         mContext = (MainActivity) getContext();
         mList = new ArrayList<>();
         boutiqueAdapter = new BoutiqueAdapter(mContext,mList);
-        initView();
-        initData();
-        setListener();
+//        initView();   initData();   setListener();
+        //  添加父类
+        super.onCreateView(inflater, container, savedInstanceState);
         return layout;
     }
-
-    private void setListener() {
+    // 改为重写的方法。
+    @Override
+    protected void setListener() {
         setPullDownListener();
     }
 
@@ -77,7 +78,8 @@ public class BoutiqueFragment extends Fragment {
         });
     }
 
-    private void initData() {
+    @Override
+    protected void initData() {
         downloadBoutique();
     }
 
@@ -104,7 +106,8 @@ public class BoutiqueFragment extends Fragment {
             }
         });
     }
-    private void initView() {
+    @Override
+    protected void initView() {
         SwipeRefreshLayout.setColorSchemeColors(
                 getResources().getColor(R.color.google_blue),
                 getResources().getColor(R.color.google_green),

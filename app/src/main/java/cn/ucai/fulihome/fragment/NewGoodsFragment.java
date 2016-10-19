@@ -30,7 +30,7 @@ import cn.ucai.fulihome.view.SpaceItemDecoration;
 /**
  * Created by Administrator on 2016/10/17 0017.
  */
-public class NewGoodsFragment extends Fragment {
+public class NewGoodsFragment extends BaseFragment {
 
 
     MainActivity context;
@@ -54,14 +54,15 @@ public class NewGoodsFragment extends Fragment {
         context = (MainActivity) getContext();
         newgoodslist = new ArrayList<>();
         newGoodsAdapter = new NewGoodsAdapter(context, newgoodslist);
-        initView();
-        initData();
-        setListener();
+//        initView();   initData();   setListener();
+        //  添加父类。
+        super.onCreateView(inflater, container, savedInstanceState);
         return layout;
 
     }
-
-    private void setListener() {
+    //  为重写的方法
+    @Override
+    protected void setListener() {
         setPullDownListener();
         setPullUpListener();
     }
@@ -109,7 +110,8 @@ public class NewGoodsFragment extends Fragment {
         });
     }
 
-    private void initData() {
+    @Override
+    protected void initData() {
         downloadNewGoods(I.ACTION_DOWNLOAD);
     }
 
@@ -152,7 +154,8 @@ public class NewGoodsFragment extends Fragment {
         });
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         SwipeRefreshLayout.setColorSchemeColors(
                 getResources().getColor(R.color.google_blue),
                 getResources().getColor(R.color.google_green),
