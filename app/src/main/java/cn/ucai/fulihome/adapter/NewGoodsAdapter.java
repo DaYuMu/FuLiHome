@@ -21,6 +21,7 @@ import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.NewGoodsBean;
 import cn.ucai.fulihome.utils.ImageLoader;
 import cn.ucai.fulihome.utils.MFGT;
+import cn.ucai.fulihome.view.FooterHolder;
 
 
 /**
@@ -107,16 +108,6 @@ public class NewGoodsAdapter extends Adapter {
         }
     }
 
-    //  用ButterKnife实现两个item布局的ViewHolder，
-    static class FooterHolder extends ViewHolder {
-        @BindView(R.id.tvFooter)
-        TextView tvFooter;
-
-        FooterHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
-        }
-    }
 
      class NewGoodsHolder extends ViewHolder{
         @BindView(R.id.ivNewGoods)

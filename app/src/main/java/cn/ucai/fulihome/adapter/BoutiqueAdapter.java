@@ -18,6 +18,7 @@ import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.BoutiqueBean;
 import cn.ucai.fulihome.utils.ImageLoader;
+import cn.ucai.fulihome.view.FooterHolder;
 
 
 /**
@@ -28,9 +29,10 @@ public class BoutiqueAdapter extends Adapter {
     ArrayList<BoutiqueBean> mList;
     boolean isMore;
 
-    public BoutiqueAdapter(Context mContext, ArrayList<BoutiqueBean> mList) {
+    public BoutiqueAdapter(Context mContext, ArrayList<BoutiqueBean> List) {
         this.mContext = mContext;
-        this.mList = mList;
+        mList = new ArrayList<>();
+        mList.addAll(List);
     }
 
     @Override
@@ -38,7 +40,7 @@ public class BoutiqueAdapter extends Adapter {
         ViewHolder holder = null;
         if (viewType == I.TYPE_FOOTER) {
                                                //  为了避免布局的不居中
-            holder = new NewGoodsAdapter.FooterHolder(LayoutInflater.from(mContext).inflate(R.layout.item_footer, null));
+            holder = new FooterHolder(LayoutInflater.from(mContext).inflate(R.layout.item_footer, null));
         } else {
             holder = new BoutiqueHolder(LayoutInflater.from(mContext).inflate(R.layout.item_boutique, null));
         }
@@ -47,10 +49,10 @@ public class BoutiqueAdapter extends Adapter {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (position == I.TYPE_FOOTER) {
-            NewGoodsAdapter.FooterHolder footer = (NewGoodsAdapter.FooterHolder) holder;
-            footer.tvFooter.setText(getFooterText());
-        } else {
+        if (getItemViewType(position) == I.TYPE_FOOTER) {
+            FooterHolder footerHolder = (FooterHolder) holder;
+            footerHolder.tvFooter.setText(getFooterText());
+        }
             BoutiqueHolder boutiqueHolder = (BoutiqueHolder) holder;
             BoutiqueBean boutiqueBean = mList.get(position);
             ImageLoader.downloadImg(mContext,((BoutiqueHolder) holder).ivBoutique,boutiqueBean.getImageurl());
@@ -58,7 +60,7 @@ public class BoutiqueAdapter extends Adapter {
             boutiqueHolder.BoutiqueGoodsName.setText(boutiqueBean.getName());
             boutiqueHolder.BoutiqueDetails.setText(boutiqueBean.getDescription());
 
-        }
+
     }
 
     private int getFooterText() {
@@ -78,6 +80,16 @@ public class BoutiqueAdapter extends Adapter {
         return I.TYPE_ITEM;
     }
 
+    public void initData(ArrayList<BoutiqueBean> list) {
+        if (mList != null) {
+            mList.clear();
+            mList.addAll(list);
+        }
+    }
+
+    public void addDate(ArrayList<BoutiqueBean> list) {
+        mList.addAll(list);
+    }
 
 
     //  继承ViewHolder，设置为一般方法。
