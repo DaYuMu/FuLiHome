@@ -16,6 +16,7 @@ import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.CategoryChildBean;
 import cn.ucai.fulihome.bean.CategoryGroupBean;
 import cn.ucai.fulihome.utils.ImageLoader;
+import cn.ucai.fulihome.utils.MFGT;
 
 /**
  * Created by Administrator on 2016/10/20 0020.
@@ -53,9 +54,9 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public Object getChild(int childPosition, int groupPosition) {
-        return childList != null && childList.get(groupPosition) != null
-                ? childList.get(groupPosition).get(childPosition) : null;
+    public Object getChild(int groupPosition, int childPosition) {
+        return childList.get(groupPosition).get(childPosition) != null ?
+                childList.get(groupPosition).get(childPosition) : null;
     }
 
     @Override
@@ -107,10 +108,16 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
             childViewHolder = (ChildViewHolder) view.getTag();
         }
 
-        CategoryChildBean childBean = (CategoryChildBean) getChild(childPosition, groupPosition);
+        final CategoryChildBean childBean = (CategoryChildBean) getChild(childPosition, groupPosition);
         if (childBean != null) {
             ImageLoader.downloadImg(mContext,childViewHolder.groupImage,childBean.getImageUrl());
             childViewHolder.groupName.setText(childBean.getName());
+            childViewHolder.ChildRelativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MFGT.gotoCategoryChildActivity(mContext,childBean.getId());
+                }
+            });
         }
         return view;
     }
