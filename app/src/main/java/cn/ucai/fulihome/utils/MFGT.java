@@ -10,6 +10,7 @@ import java.io.Serializable;
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.activity.BoutiqueChildActivity;
+import cn.ucai.fulihome.activity.CategoryChildActivity;
 import cn.ucai.fulihome.activity.MainActivity;
 import cn.ucai.fulihome.activity.NewGoodsDetailsActivity;
 import cn.ucai.fulihome.bean.BoutiqueBean;
@@ -47,6 +48,13 @@ public class MFGT {
         Intent intent = new Intent();
         intent.setClass(context, BoutiqueChildActivity.class);
         intent.putExtra(I.Boutique.CAT_ID,boutiqueBean );
+        startActivity(context,intent);
+    }
+    //  去往CategoryChildActivity的方法，要传入一个商品的id
+    public static void gotoCategoryChildActivity(Context context, int catId){
+        Intent intent = new Intent();
+        intent.setClass(context, CategoryChildActivity.class);
+        intent.putExtra(I.CategoryChild.CAT_ID, catId);
         startActivity(context,intent);
     }
 }
