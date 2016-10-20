@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -40,6 +41,14 @@ public class CategoryChildActivity extends BaseActivity {
     @BindView(R.id.SwipeRefreshLayout)
     android.support.v4.widget.SwipeRefreshLayout SwipeRefreshLayout;
     int catId;
+    @BindView(R.id.button_sort_price)
+    Button buttonSortPrice;
+    @BindView(R.id.button_sort_addtime)
+    Button buttonSortAddtime;
+
+    boolean AddtimeAsc = false;
+    boolean PriceAsc = false;
+    int sortBy = I.SORT_BY_ADDTIME_DESC;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -169,5 +178,28 @@ public class CategoryChildActivity extends BaseActivity {
     @OnClick(R.id.ivTitleBack)
     public void onClick() {
         MFGT.finish(this);
+    }
+
+    @OnClick({R.id.button_sort_price, R.id.button_sort_addtime})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.button_sort_price:
+                if (PriceAsc) {
+                    sortBy = I.SORT_BY_PRICE_ASC;
+                } else {
+                    sortBy = I.SORT_BY_PRICE_DESC;
+                }
+                PriceAsc = !PriceAsc;
+                break;
+            case R.id.button_sort_addtime:
+                if (AddtimeAsc) {
+                    sortBy = I.SORT_BY_ADDTIME_ASC;
+                } else {
+                    sortBy = I.SORT_BY_ADDTIME_DESC;
+                }
+                AddtimeAsc = !AddtimeAsc;
+                break;
+        }
+        newGoodsAdapter.setSorBy(sortBy);
     }
 }
