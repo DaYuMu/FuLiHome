@@ -10,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.fragment.BoutiqueFragment;
+import cn.ucai.fulihome.fragment.CategoryFragment;
 import cn.ucai.fulihome.fragment.NewGoodsFragment;
 import cn.ucai.fulihome.utils.L;
 
@@ -32,6 +33,7 @@ public class MainActivity extends BaseActivity {
 
     NewGoodsFragment mNewGoodsFragment;
     BoutiqueFragment mboutiqueFragment;
+    CategoryFragment mCategoryFragment;
 
     int currentindex;
 
@@ -64,13 +66,17 @@ public class MainActivity extends BaseActivity {
         fragments = new Fragment[5];
         mNewGoodsFragment = new NewGoodsFragment();
         mboutiqueFragment = new BoutiqueFragment();
+        mCategoryFragment = new CategoryFragment();
         fragments[0] = mNewGoodsFragment;
         fragments[1] = mboutiqueFragment;
+        fragments[2] = mCategoryFragment;
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.rl, mNewGoodsFragment)
                 .add(R.id.rl,mboutiqueFragment)
+                .add(R.id.rl,mCategoryFragment)
                 .hide(mboutiqueFragment)
+                .hide(mCategoryFragment)
                 .show(mNewGoodsFragment)
                 .commit();
     }

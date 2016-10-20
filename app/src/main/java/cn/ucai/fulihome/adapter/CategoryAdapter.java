@@ -27,9 +27,9 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     ArrayList<CategoryGroupBean> groupList;//  大类
     ArrayList<ArrayList<CategoryChildBean>> childList;//  小类，每个大类里都有小类。注意嵌套关系。
 
-    public CategoryAdapter(Context mContext, ArrayList<CategoryGroupBean> grouplist,
+    public CategoryAdapter(Context Context, ArrayList<CategoryGroupBean> grouplist,
                            ArrayList<ArrayList<CategoryChildBean>> childlist) {
-        this.mContext = mContext;
+        this.mContext = Context;
         groupList = new ArrayList<>();
         groupList.addAll(grouplist);
         childList = new ArrayList<>();
@@ -98,7 +98,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int childPosition, int groupPosition, boolean b, View view, ViewGroup viewGroup) {
         ChildViewHolder childViewHolder;
-        if (view != null) {
+        if (view == null) {
             view = View.inflate(mContext, R.layout.item_category_child, null);
             childViewHolder = new ChildViewHolder(view);
             view.setTag(childViewHolder);
@@ -118,6 +118,18 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return false;
+    }
+
+    public void initDate(ArrayList<CategoryGroupBean> grouplist,
+                         ArrayList<ArrayList<CategoryChildBean>> childlist) {
+        if (groupList != null) {
+            groupList.clear();
+        }
+        groupList.addAll(grouplist);
+        if (childList != null) {
+            childList.clear();
+        }
+        childList.addAll(childlist);
     }
 
     static class GroupViewHolder {
