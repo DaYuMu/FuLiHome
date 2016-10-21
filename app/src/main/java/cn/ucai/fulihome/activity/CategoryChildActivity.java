@@ -17,6 +17,7 @@ import butterknife.OnClick;
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.adapter.NewGoodsAdapter;
+import cn.ucai.fulihome.bean.CategoryChildBean;
 import cn.ucai.fulihome.bean.NewGoodsBean;
 import cn.ucai.fulihome.net.NetDao;
 import cn.ucai.fulihome.net.OkHttpUtils;
@@ -24,6 +25,7 @@ import cn.ucai.fulihome.utils.CommonUtils;
 import cn.ucai.fulihome.utils.ConvertUtils;
 import cn.ucai.fulihome.utils.L;
 import cn.ucai.fulihome.utils.MFGT;
+import cn.ucai.fulihome.view.CatChildFilterButton;
 import cn.ucai.fulihome.view.SpaceItemDecoration;
 
 public class CategoryChildActivity extends BaseActivity {
@@ -33,8 +35,8 @@ public class CategoryChildActivity extends BaseActivity {
     ArrayList<NewGoodsBean> newgoodslist;
     int pageId = 1;
     GridLayoutManager gridLayoutManager;
-    @BindView(R.id.NewGoodsTitle)
-    TextView NewGoodsTitle;
+    /*@BindView(R.id.NewGoodsTitle)
+    TextView NewGoodsTitle;*/
     @BindView(R.id.tvNewGoods)
     TextView tvNewGoods;
     @BindView(R.id.fragmentRecyclerViewNewGoods)
@@ -50,6 +52,10 @@ public class CategoryChildActivity extends BaseActivity {
     boolean AddtimeAsc = false;
     boolean PriceAsc = false;
     int sortBy = I.SORT_BY_ADDTIME_DESC;
+    @BindView(R.id.btnCatChildFilter)
+    CatChildFilterButton btnCatChildFilter;
+    String groupname;
+    ArrayList<CategoryChildBean> childlist;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,8 @@ public class CategoryChildActivity extends BaseActivity {
         if (catId == 0) {
             finish();
         }
+        groupname = getIntent().getStringExtra(I.CategoryGroup.NAME);
+        childlist = (ArrayList<CategoryChildBean>) getIntent().getSerializableExtra(I.CategoryChild.ID);
         newGoodsAdapter = new NewGoodsAdapter(context, newgoodslist);
         setContentView(R.layout.activity_category_child);
         ButterKnife.bind(this);
@@ -79,6 +87,7 @@ public class CategoryChildActivity extends BaseActivity {
         fragmentRecyclerViewNewGoods.setHasFixedSize(true);
         fragmentRecyclerViewNewGoods.setAdapter(newGoodsAdapter);
         fragmentRecyclerViewNewGoods.addItemDecoration(new SpaceItemDecoration(16));
+        btnCatChildFilter.setText(groupname);
     }
 
 
@@ -132,8 +141,10 @@ public class CategoryChildActivity extends BaseActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initData()
+    {
         downloadCategoryGoods(I.ACTION_DOWNLOAD);
+        btnCatChildFilter.setOnCatFilterClickListener(groupname,childlist);
     }
 
     private void downloadCategoryGoods(final int action) {
@@ -193,8 +204,8 @@ public class CategoryChildActivity extends BaseActivity {
                     sortBy = I.SORT_BY_PRICE_DESC;
                     right = getResources().getDrawable(R.mipmap.arrow_order_down);
                 }
-                right.setBounds(0,0,right.getIntrinsicWidth(),right.getIntrinsicHeight());
-                buttonSortPrice.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,right,null);
+                right.setBounds(0, 0, right.getIntrinsicWidth(), right.getIntrinsicHeight());
+                buttonSortPrice.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, right, null);
                 PriceAsc = !PriceAsc;
                 break;
             case R.id.button_sort_addtime:
@@ -205,8 +216,8 @@ public class CategoryChildActivity extends BaseActivity {
                     sortBy = I.SORT_BY_ADDTIME_DESC;
                     right = getResources().getDrawable(R.mipmap.arrow_order_down);
                 }
-                right.setBounds(0,0,right.getIntrinsicWidth(),right.getIntrinsicHeight());
-                buttonSortAddtime.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,right,null);
+                right.setBounds(0, 0, right.getIntrinsicWidth(), right.getIntrinsicHeight());
+                buttonSortAddtime.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, right, null);
                 AddtimeAsc = !AddtimeAsc;
                 break;
         }

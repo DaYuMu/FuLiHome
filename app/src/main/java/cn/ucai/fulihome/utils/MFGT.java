@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Parcelable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
@@ -14,6 +15,7 @@ import cn.ucai.fulihome.activity.CategoryChildActivity;
 import cn.ucai.fulihome.activity.MainActivity;
 import cn.ucai.fulihome.activity.NewGoodsDetailsActivity;
 import cn.ucai.fulihome.bean.BoutiqueBean;
+import cn.ucai.fulihome.bean.CategoryChildBean;
 
 /**
  * 本方法为活动中的跳转
@@ -51,10 +53,12 @@ public class MFGT {
         startActivity(context,intent);
     }
     //  去往CategoryChildActivity的方法，要传入一个商品的id
-    public static void gotoCategoryChildActivity(Context context, int catId){
+    public static void gotoCategoryChildActivity(Context context, int catId, String groupname, ArrayList<CategoryChildBean> list){
         Intent intent = new Intent();
         intent.setClass(context, CategoryChildActivity.class);
         intent.putExtra(I.CategoryChild.CAT_ID, catId);
+        intent.putExtra(I.CategoryGroup.NAME, groupname);
+        intent.putExtra(I.CategoryChild.ID, list);
         startActivity(context,intent);
     }
 }
