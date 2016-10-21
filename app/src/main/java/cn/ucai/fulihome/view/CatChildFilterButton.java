@@ -58,11 +58,11 @@ public class CatChildFilterButton extends Button {
     private void initPopupWindow() {
         mPopupWindow=new PopupWindow();
         mPopupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
-        if(mgvCategory.getAdapter().getCount()<16){
+//        if(mgvCategory.getAdapter().getCount()<16){
             mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-        }else{
-            mPopupWindow.setHeight(ConvertUtils.px2dp(mContext, 200));
-        }
+//        }else{
+//            mPopupWindow.setHeight(ConvertUtils.px2dp(mContext, 200));
+//        }
         mPopupWindow.setTouchable(true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(0xbb000000));
@@ -132,8 +132,9 @@ public class CatChildFilterButton extends Button {
                 layout= View.inflate(context, R.layout.item_cat_filter, null);
                 holder=new ViewChildHolder();
                 holder.layoutItem= (RelativeLayout) layout.findViewById(R.id.layout_category_child);
-                holder.ivThumb=(ImageView) layout.findViewById(R.id.ivTitleBack);
-                holder.tvChildName=(TextView) layout.findViewById(R.id.NewGoodsTitle);
+                holder.ivThumb=(ImageView) layout.findViewById(R.id.ivCategoryChildThumb);
+                holder.tvChildName=(TextView) layout.findViewById(R.id.tvCategoryChildName);
+                L.e("holder.tvChildName123="+holder.tvChildName);
                 layout.setTag(holder);
             }else{
                 holder=(ViewChildHolder) layout.getTag();
@@ -142,7 +143,10 @@ public class CatChildFilterButton extends Button {
             L.e("child = "+child);
             String name=child.getName();
             L.e("ChileName="+name);
-            holder.tvChildName.setText(name);
+            L.e("holder.tvChildName321="+holder.tvChildName);
+            if(holder.tvChildName!=null) {
+                holder.tvChildName.setText(name);
+            }
             String imgUrl=child.getImageUrl();
             ImageLoader.downloadImg(context,holder.ivThumb,imgUrl);
 
@@ -154,7 +158,7 @@ public class CatChildFilterButton extends Button {
                     }
                     Intent intent=new Intent(mContext, CategoryChildActivity.class);
                     intent.putExtra(I.CategoryChild.CAT_ID, child.getId());
-                    intent.putExtra("childList", Children);
+                    intent.putExtra(I.CategoryChild.ID, Children);
                     intent.putExtra(I.CategoryGroup.NAME, mbtnTop.getText().toString());
                     mContext.startActivity(intent);
                     ((CategoryChildActivity)mContext).finish();

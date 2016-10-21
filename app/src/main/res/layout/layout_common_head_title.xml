@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/back"/>
     <TextView
-        android:id="@+id/NewGoodsTitle"
+        android:id="@+id/tv_commom_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

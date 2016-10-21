@@ -59,6 +59,8 @@ public class CategoryChildActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_category_child);
+        ButterKnife.bind(this);
         context = this;
         newgoodslist = new ArrayList<>();
         catId = getIntent().getIntExtra(I.CategoryChild.CAT_ID, 0);
@@ -68,8 +70,6 @@ public class CategoryChildActivity extends BaseActivity {
         groupname = getIntent().getStringExtra(I.CategoryGroup.NAME);
         childlist = (ArrayList<CategoryChildBean>) getIntent().getSerializableExtra(I.CategoryChild.ID);
         newGoodsAdapter = new NewGoodsAdapter(context, newgoodslist);
-        setContentView(R.layout.activity_category_child);
-        ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
     }
 

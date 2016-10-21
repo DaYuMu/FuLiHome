@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:text="鞋子"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:textSize="12sp" />
 
     <ImageView

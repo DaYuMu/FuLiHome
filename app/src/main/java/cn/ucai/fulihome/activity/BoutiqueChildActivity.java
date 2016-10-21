@@ -27,7 +27,7 @@ import cn.ucai.fulihome.view.SpaceItemDecoration;
 
 public class BoutiqueChildActivity extends BaseActivity {
 
-    @BindView(R.id.NewGoodsTitle)
+    @BindView(R.id.tv_commom_title)
     TextView NewGoodsTitle;
     @BindView(R.id.tvNewGoods)
     TextView tvNewGoods;
