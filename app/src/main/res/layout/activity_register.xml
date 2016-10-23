@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#FFFFFF">
-        <TextView
+        <EditText
             android:id="@+id/RegisterName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:hint="用户名"
@@ -30,9 +30,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#FFFFFF">
-        <TextView
+        <EditText
             android:id="@+id/RegisterNick"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:hint="昵称"
@@ -48,9 +48,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#FFFFFF">
-        <TextView
+        <EditText
             android:id="@+id/RegisterPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:hint="密码"
@@ -66,9 +66,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#FFFFFF">
-        <TextView
+        <EditText
             android:id="@+id/RegisterPasswordqr"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:hint="确认密码"
