@@ -49,7 +49,7 @@
         android:layout_height="50dp"
         android:background="#FFFFFF">
         <TextView
-            android:id="@+id/LoginName"
+            android:id="@+id/RegisterPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -67,7 +67,7 @@
         android:layout_height="50dp"
         android:background="#FFFFFF">
         <TextView
-            android:id="@+id/LoginPassword"
+            android:id="@+id/RegisterPasswordqr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
