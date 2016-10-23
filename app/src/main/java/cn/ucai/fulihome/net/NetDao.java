@@ -9,6 +9,7 @@ import cn.ucai.fulihome.bean.CategoryGroupBean;
 import cn.ucai.fulihome.bean.GoodsDetailsBean;
 import cn.ucai.fulihome.bean.NewGoodsBean;
 import cn.ucai.fulihome.bean.Result;
+import cn.ucai.fulihome.bean.User;
 import cn.ucai.fulihome.utils.L;
 import cn.ucai.fulihome.utils.MD5;
 
@@ -121,6 +122,15 @@ public class NetDao {
                 .addParam(I.User.NICK,usernick)
                 .addParam(I.User.PASSWORD, MD5.getMessageDigest(userpassword))
                 .post()
+                .targetClass(Result.class)
+                .execute(listener);
+    }
+
+    public static void login(Context context, String name, String password, OkHttpUtils.OnCompleteListener<Result> listener) {
+        OkHttpUtils<Result> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_LOGIN)
+                .addParam(I.User.USER_NAME,name)
+                .addParam(I.User.PASSWORD,MD5.getMessageDigest(password))
                 .targetClass(Result.class)
                 .execute(listener);
     }
