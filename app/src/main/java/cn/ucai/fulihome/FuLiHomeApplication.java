@@ -9,6 +9,7 @@ import android.app.Application;
 public class FuLiHomeApplication extends Application {
     public static FuLiHomeApplication application;
     private static  FuLiHomeApplication instance = null;
+    public static String username;
 
     @Override
     public void onCreate() {
@@ -22,5 +23,10 @@ public class FuLiHomeApplication extends Application {
             instance = new FuLiHomeApplication();
         }
         return instance;
+    }
+
+
+    public static void setUsername(String username) {
+        FuLiHomeApplication.username = username;
     }
 }

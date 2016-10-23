@@ -12,8 +12,10 @@ import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.activity.BoutiqueChildActivity;
 import cn.ucai.fulihome.activity.CategoryChildActivity;
+import cn.ucai.fulihome.activity.LoginActivity;
 import cn.ucai.fulihome.activity.MainActivity;
 import cn.ucai.fulihome.activity.NewGoodsDetailsActivity;
+import cn.ucai.fulihome.activity.RegisterActivity;
 import cn.ucai.fulihome.bean.BoutiqueBean;
 import cn.ucai.fulihome.bean.CategoryChildBean;
 
@@ -60,6 +62,13 @@ public class MFGT {
         intent.putExtra(I.CategoryGroup.NAME, groupname);
         intent.putExtra(I.CategoryChild.ID, list);
         startActivity(context,intent);
+    }
+
+    public static void gotoLoginActivity(Activity context){
+        startActivity(context, LoginActivity.class);
+    }
+    public static void gotoRegisterActivity(Activity context){
+        startActivity(context, RegisterActivity.class);
     }
 }
 

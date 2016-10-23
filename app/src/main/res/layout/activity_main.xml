@@ -56,7 +56,7 @@
                 android:id="@+id/btnPersonal"
                 style="@style/MenuStyle"
                 android:drawableTop="@drawable/selector_menu_item_personal_center"
-                android:text="收藏"/>
+                android:text="我的"/>
 
     </LinearLayout>
     <RelativeLayout
