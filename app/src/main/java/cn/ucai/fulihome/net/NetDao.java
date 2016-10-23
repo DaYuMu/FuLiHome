@@ -8,7 +8,9 @@ import cn.ucai.fulihome.bean.CategoryChildBean;
 import cn.ucai.fulihome.bean.CategoryGroupBean;
 import cn.ucai.fulihome.bean.GoodsDetailsBean;
 import cn.ucai.fulihome.bean.NewGoodsBean;
+import cn.ucai.fulihome.bean.Result;
 import cn.ucai.fulihome.utils.L;
+import cn.ucai.fulihome.utils.MD5;
 
 /**
  * Created by Administrator on 2016/10/17 0017.
@@ -101,6 +103,25 @@ public class NetDao {
                 //  默认的每页的尺寸
                 .addParam(I.PAGE_SIZE,String.valueOf(I.PAGE_SIZE_DEFAULT))
                 .targetClass(NewGoodsBean[].class)
+                .execute(listener);
+    }
+
+    /**
+     * 下载注册需要的数据。
+     * @param context
+     * @param username
+     * @param usernick
+     * @param userpassword
+     * @param listener
+     */
+    public static void register(Context context, String username, String usernick, String userpassword, OkHttpUtils.OnCompleteListener<Result> listener) {
+        OkHttpUtils<Result> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_REGISTER)
+                .addParam(I.User.USER_NAME,username)
+                .addParam(I.User.NICK,usernick)
+                .addParam(I.User.PASSWORD, MD5.getMessageDigest(userpassword))
+                .post()
+                .targetClass(Result.class)
                 .execute(listener);
     }
 }
