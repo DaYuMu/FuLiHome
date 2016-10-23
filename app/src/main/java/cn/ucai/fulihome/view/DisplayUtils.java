@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import cn.ucai.fulihome.R;
+import cn.ucai.fulihome.utils.MFGT;
 
 
 /**
@@ -15,7 +16,8 @@ public class DisplayUtils {
         activity.findViewById(R.id.LoginBack).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.finish();
+//                activity.finish();
+                MFGT.finish(activity);
             }
         });
     }
