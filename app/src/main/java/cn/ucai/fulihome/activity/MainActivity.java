@@ -8,11 +8,13 @@ import android.widget.RadioButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.ucai.fulihome.FuLiHomeApplication;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.fragment.BoutiqueFragment;
 import cn.ucai.fulihome.fragment.CategoryFragment;
 import cn.ucai.fulihome.fragment.NewGoodsFragment;
 import cn.ucai.fulihome.utils.L;
+import cn.ucai.fulihome.utils.MFGT;
 
 public class MainActivity extends BaseActivity {
 
@@ -100,7 +102,12 @@ public class MainActivity extends BaseActivity {
                 index = 3;
                 break;
             case R.id.btnPersonal:
-                index = 4;
+                L.e("MainActivity.onCheckedChange.btnPersonal:");
+                if (FuLiHomeApplication.username == null) {
+                    MFGT.gotoLoginActivity(this);
+                } else {
+                    index = 4;
+                }
                 break;
         }
         setFragment();
