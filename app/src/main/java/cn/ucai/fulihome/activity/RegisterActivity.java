@@ -1,6 +1,7 @@
 package cn.ucai.fulihome.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.Result;
 import cn.ucai.fulihome.net.NetDao;
@@ -112,7 +114,10 @@ public class RegisterActivity extends BaseActivity {
                     CommonUtils.showLongToast(R.string.register_fail);
                 } else {
                     if (result.isRetMsg()) {
+
+
                         CommonUtils.showLongToast(R.string.register_success);
+                        setResult(RESULT_OK,new Intent().putExtra(I.User.USER_NAME,username));
                         MFGT.finish(mContext);
                     } else {
                         CommonUtils.showLongToast(R.string.register_fail_exists);
