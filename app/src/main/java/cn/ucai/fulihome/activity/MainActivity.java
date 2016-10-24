@@ -1,5 +1,7 @@
 package cn.ucai.fulihome.activity;
 
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,15 +11,17 @@ import android.widget.RadioButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulihome.FuLiHomeApplication;
+import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.fragment.BoutiqueFragment;
 import cn.ucai.fulihome.fragment.CategoryFragment;
 import cn.ucai.fulihome.fragment.NewGoodsFragment;
+import cn.ucai.fulihome.fragment.PersonalCenterFragment;
 import cn.ucai.fulihome.utils.L;
 import cn.ucai.fulihome.utils.MFGT;
 
 public class MainActivity extends BaseActivity {
-
+    private static final String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.btnNewGoods)
     RadioButton btnNewGoods;
     @BindView(R.id.btnBoutique)
@@ -36,6 +40,7 @@ public class MainActivity extends BaseActivity {
     NewGoodsFragment mNewGoodsFragment;
     BoutiqueFragment mboutiqueFragment;
     CategoryFragment mCategoryFragment;
+    PersonalCenterFragment mPersonalCenterFragment;
 
     int currentindex;
 
@@ -69,9 +74,11 @@ public class MainActivity extends BaseActivity {
         mNewGoodsFragment = new NewGoodsFragment();
         mboutiqueFragment = new BoutiqueFragment();
         mCategoryFragment = new CategoryFragment();
+        mPersonalCenterFragment = new PersonalCenterFragment();
         fragments[0] = mNewGoodsFragment;
         fragments[1] = mboutiqueFragment;
         fragments[2] = mCategoryFragment;
+        fragments[4] = mPersonalCenterFragment;
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.rl, mNewGoodsFragment)
@@ -140,5 +147,20 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackClick() {
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setFragment();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        L.e(TAG+"MainActivity.onActivityResult.result"+requestCode);
+        if (requestCode == I.REQUEST_CODE_LOGIN && FuLiHomeApplication.getUser() != null) {
+            index = 4;
+        }
     }
 }
