@@ -16,6 +16,7 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/tb_icon_more_msg_white_56"/>
     <TextView
+        android:id="@+id/Title_Settings"
         android:layout_toLeftOf="@id/title_image"
         android:layout_width="80dp"
         android:layout_height="45dp"
@@ -170,30 +171,35 @@
         android:background="#FFFFFF"
         android:orientation="horizontal">
         <ImageView
+            android:id="@+id/Bying"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/order_list1"/>
         <ImageView
+            android:id="@+id/WritingGo"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/order_list2"/>
         <ImageView
+            android:id="@+id/WritingTo"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/order_list3"/>
         <ImageView
+            android:id="@+id/Saying"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/order_list4"/>
         <ImageView
+            android:id="@+id/NoBuying"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
