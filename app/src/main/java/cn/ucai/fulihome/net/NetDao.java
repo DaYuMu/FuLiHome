@@ -42,7 +42,8 @@ public class NetDao {
      * @param position
      * @param listener
      */
-    public static void downloadGoodsDetails(Context context, int position, OkHttpUtils.OnCompleteListener<GoodsDetailsBean> listener) {
+    public static void downloadGoodsDetails(Context context, int position,
+                                            OkHttpUtils.OnCompleteListener<GoodsDetailsBean> listener) {
         L.e("main","NetDao.downloadGoodsDetails()方法开始运行");
         OkHttpUtils<GoodsDetailsBean> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_FIND_GOOD_DETAILS)
@@ -81,7 +82,8 @@ public class NetDao {
      * @param context
      * @param listener
      */
-    public static void downloadChild(Context context, int parentId,OkHttpUtils.OnCompleteListener<CategoryChildBean[]> listener) {
+    public static void downloadChild(Context context, int parentId,
+                                     OkHttpUtils.OnCompleteListener<CategoryChildBean[]> listener) {
         OkHttpUtils<CategoryChildBean[]> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_FIND_CATEGORY_CHILDREN)
                 .addParam(I.CategoryChild.PARENT_ID,String.valueOf(parentId))
@@ -126,12 +128,13 @@ public class NetDao {
                 .execute(listener);
     }
 
-    public static void login(Context context, String name, String password, OkHttpUtils.OnCompleteListener<Result> listener) {
-        OkHttpUtils<Result> utils = new OkHttpUtils<>(context);
+    public static void login(Context context, String name, String password,
+                             OkHttpUtils.OnCompleteListener<String> listener) {
+        OkHttpUtils<String> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_LOGIN)
                 .addParam(I.User.USER_NAME,name)
                 .addParam(I.User.PASSWORD,MD5.getMessageDigest(password))
-                .targetClass(Result.class)
+                .targetClass(String.class)
                 .execute(listener);
     }
 }

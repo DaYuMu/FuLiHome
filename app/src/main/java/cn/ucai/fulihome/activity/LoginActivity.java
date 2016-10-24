@@ -19,6 +19,7 @@ import cn.ucai.fulihome.net.OkHttpUtils;
 import cn.ucai.fulihome.utils.CommonUtils;
 import cn.ucai.fulihome.utils.L;
 import cn.ucai.fulihome.utils.MFGT;
+import cn.ucai.fulihome.utils.ResultUtils;
 
 public class LoginActivity extends BaseActivity {
 
@@ -95,10 +96,10 @@ public class LoginActivity extends BaseActivity {
         final ProgressDialog pd = new ProgressDialog(mContext);
         pd.setMessage(getResources().getString(R.string.logining));
         pd.show();
-        NetDao.login(mContext, name, password, new OkHttpUtils.OnCompleteListener<Result>() {
+        NetDao.login(mContext, name, password, new OkHttpUtils.OnCompleteListener<String>() {
             @Override
-            public void onSuccess(Result result) {
-                pd.dismiss();
+            public void onSuccess(String s) {
+                Result result = ResultUtils.getResultFromJson(s, User.class);
                 if (result == null) {
                     CommonUtils.showLongToast(R.string.login_fail);
                 } else {
@@ -115,6 +116,7 @@ public class LoginActivity extends BaseActivity {
                         }
                     }
                 }
+                pd.dismiss();
             }
 
             @Override
