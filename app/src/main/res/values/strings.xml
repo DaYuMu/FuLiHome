@@ -25,4 +25,5 @@
     <string name="login_fail_unknow_user">login fail error user</string>
     <string name="login_fail_error_password">error password</string>
     <string name="logining">登录中···</string>
+    <string name="user_database_error">database error</string>
 </resources>
