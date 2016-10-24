@@ -10,10 +10,13 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.ucai.fulihome.FuLiHomeApplication;
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.Result;
 import cn.ucai.fulihome.bean.User;
+import cn.ucai.fulihome.dao.SharePreferenceUtils;
+import cn.ucai.fulihome.dao.UserDao;
 import cn.ucai.fulihome.net.NetDao;
 import cn.ucai.fulihome.net.OkHttpUtils;
 import cn.ucai.fulihome.utils.CommonUtils;
@@ -40,8 +43,8 @@ public class LoginActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         L.e("LoginActivity.onCreate");
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
         mContext = this;
+        ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
     }
 
@@ -78,6 +81,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void checkedInput() {
+        L.e(TAG+"LoginActivity.checkedInput().action");
         String name = LoginName.getText().toString().trim();
         String password = LoginPassword.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
@@ -89,6 +93,7 @@ public class LoginActivity extends BaseActivity {
             LoginPassword.requestLayout();
             return;
         }
+        L.e(TAG+"LoginActivity.checkedInput().end");
         login();
     }
 
@@ -96,16 +101,29 @@ public class LoginActivity extends BaseActivity {
         final ProgressDialog pd = new ProgressDialog(mContext);
         pd.setMessage(getResources().getString(R.string.logining));
         pd.show();
-        NetDao.login(mContext, name, password, new OkHttpUtils.OnCompleteListener<String>() {
+        L.e(TAG+"login.pd.show()");
+        NetDao.login(mContext, LoginName.getText().toString(), LoginPassword.getText().toString(), new OkHttpUtils.OnCompleteListener<String>() {
+
             @Override
             public void onSuccess(String s) {
+                L.e(TAG+"NetDao.login.onSuccess()");
                 Result result = ResultUtils.getResultFromJson(s, User.class);
                 if (result == null) {
                     CommonUtils.showLongToast(R.string.login_fail);
                 } else {
                     if (result.isRetMsg()) {
-//                        User user = result.getRetData();
-                        MFGT.finish(mContext);
+                        User user = result.getRetData();
+                        L.e(TAG+"得到的用户信息"+user);
+                        // 调用UserDao中的保存用户的方法。
+                        UserDao userDao = new UserDao(mContext);
+                        boolean isSuccess = userDao.saceUser(user);
+                        if (isSuccess) {
+                            SharePreferenceUtils.getInstance(mContext).saveUser(user.getMuserName());
+                            FuLiHomeApplication.setUser(user);
+                            MFGT.finish(mContext);
+                        } else {
+                            CommonUtils.showShortToast(R.string.user_database_error);
+                        }
                     } else {
                         if (result.getRetCode() == I.MSG_LOGIN_UNKNOW_USER) {
                             CommonUtils.showLongToast(R.string.login_fail_unknow_user);
@@ -122,6 +140,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onError(String error) {
                 pd.dismiss();
+
                 CommonUtils.showShortToast(error);
             }
         });
