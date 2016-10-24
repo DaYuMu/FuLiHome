@@ -53,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:inputType="textPassword"
             android:hint="密码"
             android:textSize="20dp" />
         <ImageView
@@ -71,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:inputType="textPassword"
             android:hint="确认密码"
             android:textSize="20dp" />
         <ImageView
