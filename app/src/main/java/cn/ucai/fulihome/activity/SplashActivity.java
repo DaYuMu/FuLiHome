@@ -4,15 +4,23 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import cn.ucai.fulihome.FuLiHomeApplication;
 import cn.ucai.fulihome.R;
+import cn.ucai.fulihome.bean.User;
+import cn.ucai.fulihome.dao.SharePreferenceUtils;
+import cn.ucai.fulihome.dao.UserDao;
+import cn.ucai.fulihome.utils.L;
 import cn.ucai.fulihome.utils.MFGT;
 
 public class SplashActivity extends AppCompatActivity {
     private final int splash = 2000;
+    SplashActivity mContext;
+    private static final String TAG = SplashActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.activity_splash);
     }
 
@@ -22,7 +30,21 @@ public class SplashActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                long timeMillis1 = System.currentTimeMillis();//  一开始时候的时间
+                long timeMillis1 = System.currentTimeMillis();//  一开始时候的时间L.e(TAG+"username="+username);
+                // 如果内存中有User数据直接读取
+                User user = FuLiHomeApplication.getUser();
+                // 判断首选项是否读取到用户名
+                String username = SharePreferenceUtils.getInstance(mContext).getUser();
+                L.e(TAG+"user="+user);
+                if (user == null&&username!=null) {
+                    //  数据库中读取信息
+                    UserDao userDao = new UserDao(mContext);
+                    user = userDao.getUser(username);
+                    L.e(TAG+"user="+user);
+                    if (user != null) {
+                        FuLiHomeApplication.setUser(user);
+                    }
+                }
                 //  某些在中间进行的加载数据等需要时间的操作。
                 long timeMillis2 = System.currentTimeMillis();//  加载数据等耗时操作完成后的时间
 
