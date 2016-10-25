@@ -1,5 +1,6 @@
 package cn.ucai.fulihome.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import cn.ucai.fulihome.FuLiHomeApplication;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.User;
 import cn.ucai.fulihome.dao.SharePreferenceUtils;
+import cn.ucai.fulihome.utils.CommonUtils;
 import cn.ucai.fulihome.utils.ImageLoader;
 import cn.ucai.fulihome.utils.MFGT;
 import cn.ucai.fulihome.view.DisplayUtils;
@@ -39,16 +41,21 @@ public class SettingActivity extends BaseActivity {
     protected void initView() {
     }
 
+    private void showinfo() {
+        user = FuLiHomeApplication.getUser();
+        if (user == null) {
+            ImageLoader.setAvatar(ImageLoader.getAvatar(user), mContext, DefaultAvatar);
+            SettingUsername.setText(user.getMuserName());
+            SettingUserNick.setText(user.getMuserNick());
+        }
+    }
     @Override
     protected void initData() {
-        user = FuLiHomeApplication.getUser();
-        if (user != null) {
-            ImageLoader.setAvatar(ImageLoader.getAvatar(user),mContext,DefaultAvatar);
-        } else {
+        if (user == null) {
             finish();
+            return;
         }
-        SettingUsername.setText(user.getMuserName());
-        SettingUserNick.setText(user.getMuserNick());
+        showinfo();
     }
 
     @Override
@@ -57,16 +64,19 @@ public class SettingActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.BackPCA, R.id.AvatarBack, R.id.UserNameSetting, R.id.UserNickSetting, R.id.ButtonSetting})
+    @OnClick({R.id.BackPCA, R.id.AvatarSetting, R.id.UserNameSetting, R.id.UserNickSetting, R.id.ButtonSetting})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.BackPCA:
+                MFGT.finish(this);
                 break;
-            case R.id.AvatarBack:
+            case R.id.AvatarSetting:
                 break;
             case R.id.UserNameSetting:
+                CommonUtils.showShortToast(R.string.user_name_connot_be_setting);
                 break;
             case R.id.UserNickSetting:
+                MFGT.gotoUpdateNickActivity(mContext);
                 break;
             case R.id.ButtonSetting:
                 logout();
@@ -81,5 +91,17 @@ public class SettingActivity extends BaseActivity {
             MFGT.gotoLoginActivity(mContext);
         }
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showinfo();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        CommonUtils.showShortToast(R.string.update_user_nick_sucess);
     }
 }

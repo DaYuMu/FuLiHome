@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DDDDDD"
+    android:orientation="vertical">
+    <include layout="@layout/item_login_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#DDDDDD"/>
+     <EditText
+         android:id="@+id/EditNick"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:hint="用户名"
+        android:background="#FFFFFF"/>
+    <Button
+        android:id="@+id/UpdateNick"
+        android:layout_marginTop="77dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改昵称"
+        android:textSize="25dp"
+        android:textColor="#FFFFFF"
+        android:background="#FF5511"/>
+
+</LinearLayout>
