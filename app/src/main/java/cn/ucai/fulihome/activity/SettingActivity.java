@@ -11,7 +11,9 @@ import butterknife.OnClick;
 import cn.ucai.fulihome.FuLiHomeApplication;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.User;
+import cn.ucai.fulihome.dao.SharePreferenceUtils;
 import cn.ucai.fulihome.utils.ImageLoader;
+import cn.ucai.fulihome.utils.MFGT;
 import cn.ucai.fulihome.view.DisplayUtils;
 
 public class SettingActivity extends BaseActivity {
@@ -22,7 +24,7 @@ public class SettingActivity extends BaseActivity {
     TextView SettingUsername;
     @BindView(R.id.SettingUserNick)
     TextView SettingUserNick;
-
+    User user;
     SettingActivity mContext;
 
     @Override
@@ -39,7 +41,7 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        User user = FuLiHomeApplication.getUser();
+        user = FuLiHomeApplication.getUser();
         if (user != null) {
             ImageLoader.setAvatar(ImageLoader.getAvatar(user),mContext,DefaultAvatar);
         } else {
@@ -67,7 +69,17 @@ public class SettingActivity extends BaseActivity {
             case R.id.UserNickSetting:
                 break;
             case R.id.ButtonSetting:
+                logout();
                 break;
         }
+    }
+
+    private void logout() {
+        if (user != null) {
+            SharePreferenceUtils.getInstance(mContext).removeuser();
+            FuLiHomeApplication.setUser(null);
+            MFGT.gotoLoginActivity(mContext);
+        }
+        finish();
     }
 }
