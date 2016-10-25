@@ -18,7 +18,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
      * 注意SQL语句中的空格不能忽略，，否则会造成SQL语句错误
      */
     private static final String FULIHOME_USER_TABLE_NAME = "CREATE TABLE "
-            +UserDao.USER_TABLE_NAME+" （"
+            +UserDao.USER_TABLE_NAME+"("
             +UserDao.USER_COLUMN_NAME+" TEXT PRIMARY KEY,"
             +UserDao.USER_COLUMN_NICK+" TEXT,"
             +UserDao.USER_COLUMN_AVATAR_ID+" INTEGER,"
