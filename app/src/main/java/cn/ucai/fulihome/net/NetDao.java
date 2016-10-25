@@ -137,4 +137,21 @@ public class NetDao {
                 .targetClass(String.class)
                 .execute(listener);
     }
+
+    /**
+     * i下载更新昵称后的数据
+     * @param context
+     * @param name
+     * @param nick
+     * @param listener
+     */
+    public static void updatanick(Context context, String name, String nick,
+                             OkHttpUtils.OnCompleteListener<String> listener) {
+        OkHttpUtils<String> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_UPDATE_USER_NICK)
+                .addParam(I.User.USER_NAME,name)
+                .addParam(I.User.NICK,nick)
+                .targetClass(String.class)
+                .execute(listener);
+    }
 }
