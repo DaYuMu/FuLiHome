@@ -30,7 +30,7 @@ public class PersonalCenterFragment extends BaseFragment {
     TextView UserName;
 
     MainActivity mContext;
-
+    User user;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class PersonalCenterFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        User user = FuLiHomeApplication.getUser();
+        user = FuLiHomeApplication.getUser();
         L.e(TAG+"user"+user);
         if (user == null) {
             MFGT.gotoLoginActivity(mContext);
@@ -63,7 +63,8 @@ public class PersonalCenterFragment extends BaseFragment {
 
     }
 
-    @OnClick(R.id.Title_Settings)
+    @OnClick({R.id.Title_Settings,R.id.ToSetting})
     public void onClick() {
+        MFGT.gotoSettingActivity(mContext);
     }
 }

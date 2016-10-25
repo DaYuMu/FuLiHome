@@ -16,8 +16,10 @@ import cn.ucai.fulihome.activity.LoginActivity;
 import cn.ucai.fulihome.activity.MainActivity;
 import cn.ucai.fulihome.activity.NewGoodsDetailsActivity;
 import cn.ucai.fulihome.activity.RegisterActivity;
+import cn.ucai.fulihome.activity.SettingActivity;
 import cn.ucai.fulihome.bean.BoutiqueBean;
 import cn.ucai.fulihome.bean.CategoryChildBean;
+import cn.ucai.fulihome.bean.User;
 
 /**
  * 本方法为活动中的跳转
@@ -79,6 +81,10 @@ public class MFGT {
     public static void startActivityForResult(Activity context,Intent intent,int requestcode){
         context.startActivityForResult(intent,requestcode);
         context.overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+    }
+
+    public static void gotoSettingActivity(Activity context) {
+        startActivity(context,SettingActivity.class);
     }
 }
 
