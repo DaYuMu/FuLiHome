@@ -17,6 +17,7 @@ import cn.ucai.fulihome.activity.MainActivity;
 import cn.ucai.fulihome.activity.NewGoodsDetailsActivity;
 import cn.ucai.fulihome.activity.RegisterActivity;
 import cn.ucai.fulihome.activity.SettingActivity;
+import cn.ucai.fulihome.activity.UpdateNickActivity;
 import cn.ucai.fulihome.bean.BoutiqueBean;
 import cn.ucai.fulihome.bean.CategoryChildBean;
 import cn.ucai.fulihome.bean.User;
@@ -84,7 +85,11 @@ public class MFGT {
     }
 
     public static void gotoSettingActivity(Activity context) {
+        L.e("MFGT.gotoSettingActivity.start");
         startActivity(context,SettingActivity.class);
+    }
+    public static void gotoUpdateNickActivity(Activity context) {
+        startActivity(context,UpdateNickActivity.class);
     }
 }
 

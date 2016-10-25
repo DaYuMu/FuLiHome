@@ -104,7 +104,6 @@ public class LoginActivity extends BaseActivity {
         pd.show();
         L.e(TAG+"login.pd.show()");
         NetDao.login(mContext, LoginName.getText().toString(), LoginPassword.getText().toString(), new OkHttpUtils.OnCompleteListener<String>() {
-
             @Override
             public void onSuccess(String s) {
                 L.e(TAG+"NetDao.login.onSuccess()");
