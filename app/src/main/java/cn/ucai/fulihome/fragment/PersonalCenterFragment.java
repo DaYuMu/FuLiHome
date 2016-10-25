@@ -54,7 +54,7 @@ public class PersonalCenterFragment extends BaseFragment {
             MFGT.gotoLoginActivity(mContext);
         } else {
             ImageLoader.setAvatar(ImageLoader.getAvatar(user),mContext,UserAvatar);
-            UserName.setText(user.getMuserName());
+            UserName.setText(user.getMuserNick());
         }
     }
 
@@ -76,6 +76,7 @@ public class PersonalCenterFragment extends BaseFragment {
 
     @OnClick({R.id.Title_Settings,R.id.ToSetting})
     public void onClick() {
+        L.e(TAG+"PersonalCenterFragment.onUpdateNickClick");
         MFGT.gotoSettingActivity(mContext);
     }
 }
