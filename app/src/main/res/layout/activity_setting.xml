@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DDDDDD"
+    android:orientation="vertical">
+<RelativeLayout
+    android:id="@+id/SettingTitle"
+    android:layout_width="match_parent"
+    android:layout_height="57dp"
+    android:background="#FFFFFF">
+    <ImageView
+        android:id="@+id/BackPCA"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="个人资料"
+        android:textSize="25dp"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
+
+    <View
+        android:id="@+id/SettingView1"
+        android:layout_below="@id/SettingTitle"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <RelativeLayout
+        android:id="@+id/AvatarSetting"
+        android:layout_below="@id/SettingView1"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#FFFFFF">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户头像"
+            android:layout_centerVertical="true"
+            android:textSize="25dp"/>
+        <ImageView
+            android:id="@+id/AvatarBack"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/right_arrow_icon"/>
+        <ImageView
+            android:layout_toLeftOf="@id/AvatarBack"
+            android:id="@+id/Default_Avatar"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/contactlogo"/>
+
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/SettingView2"
+        android:layout_below="@+id/AvatarSetting"
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <RelativeLayout
+        android:layout_below="@id/SettingView2"
+        android:id="@+id/UserNameSetting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:layout_centerVertical="true"
+            android:textSize="25dp"/>
+        <ImageView
+            android:id="@+id/UserNameBack"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/right_arrow_icon"/>
+        <TextView
+            android:id="@+id/SettingUsername"
+            android:layout_toLeftOf="@id/UserNameBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="a952700"
+            android:layout_centerVertical="true"
+            android:textSize="23dp"/>
+
+
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/SettingView3"
+        android:layout_below="@+id/UserNameSetting"
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <RelativeLayout
+        android:layout_below="@id/SettingView3"
+        android:id="@+id/UserNickSetting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="昵称"
+            android:layout_centerVertical="true"
+            android:textSize="25dp"/>
+        <ImageView
+            android:id="@+id/UserNickBack"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/right_arrow_icon"/>
+        <TextView
+            android:id="@+id/SettingUserNick"
+            android:layout_toLeftOf="@id/UserNickBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="士大夫123"
+            android:layout_centerVertical="true"
+            android:textSize="23dp"/>
+
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/ButtonSetting"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF5511"
+        android:text="退出"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"/>
+</RelativeLayout>
