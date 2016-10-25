@@ -63,6 +63,17 @@ public class PersonalCenterFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        user = FuLiHomeApplication.getUser();
+        L.e(TAG+"user"+user);
+        if (user != null) {
+            ImageLoader.setAvatar(ImageLoader.getAvatar(user),mContext,UserAvatar);
+            UserName.setText(user.getMuserName());
+        }
+    }
+
     @OnClick({R.id.Title_Settings,R.id.ToSetting})
     public void onClick() {
         MFGT.gotoSettingActivity(mContext);
