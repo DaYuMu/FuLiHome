@@ -31,4 +31,17 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okio:okio:1.11.0'
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/MobCommons-2016.1020.1028.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/MobTools-2016.1020.1028.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-Core-2.7.8.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-Email-2.7.8.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-QQ-2.7.8.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-QZone-2.7.8.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-ShortMessage-2.7.8.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-SinaWeibo-2.7.8.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-TencentWeibo-2.7.8.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-Wechat-2.7.8.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-Wechat-Core-2.7.8.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-Wechat-Favorite-2.7.8.jar')
+    compile files('E:/Android/AndroidStudioProjects/FuLiHome/libs/ShareSDK-Wechat-Moments-2.7.8.jar')
 }
