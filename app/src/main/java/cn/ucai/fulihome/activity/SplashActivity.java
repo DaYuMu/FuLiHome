@@ -33,14 +33,15 @@ public class SplashActivity extends AppCompatActivity {
                 long timeMillis1 = System.currentTimeMillis();//  一开始时候的时间L.e(TAG+"username="+username);
                 // 如果内存中有User数据直接读取
                 User user = FuLiHomeApplication.getUser();
+                L.e(TAG, "user=" + user);
                 // 判断首选项是否读取到用户名
                 String username = SharePreferenceUtils.getInstance(mContext).getUser();
-                L.e(TAG+"user="+user);
-                if (user == null&&username!=null) {
+                L.e(TAG, "username=" + username);
+                if (user == null && username != null) {
                     //  数据库中读取信息
                     UserDao userDao = new UserDao(mContext);
                     user = userDao.getUser(username);
-                    L.e(TAG+"user="+user);
+                    L.e(TAG , "user=" + user);
                     if (user != null) {
                         FuLiHomeApplication.setUser(user);
                     }
@@ -49,10 +50,10 @@ public class SplashActivity extends AppCompatActivity {
                 long timeMillis2 = System.currentTimeMillis();//  加载数据等耗时操作完成后的时间
 
                 //  用两次时间的差与定的事件进行比较
-                if (timeMillis2 - timeMillis1< splash) {
+                if (timeMillis2 - timeMillis1 < splash) {
                     try {
                         //   判断闪屏还要延续多少时间
-                        Thread.sleep(splash-(timeMillis2-timeMillis1));
+                        Thread.sleep(splash - (timeMillis2 - timeMillis1));
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

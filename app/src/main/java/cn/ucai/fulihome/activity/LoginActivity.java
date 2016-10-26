@@ -116,10 +116,12 @@ public class LoginActivity extends BaseActivity {
                         L.e(TAG+"得到的用户信息"+user);
                         // 调用UserDao中的保存用户的方法。
                         UserDao userDao = new UserDao(mContext);
-                        boolean isSuccess = userDao.saceUser(user);
+                        boolean isSuccess = userDao.saveUser(user);
                         if (isSuccess) {
                             SharePreferenceUtils.getInstance(mContext).saveUser(user.getMuserName());
+                            L.e(TAG,"username="+user.getMuserName());
                             FuLiHomeApplication.setUser(user);
+                            L.e(TAG,"user="+user);
                             MFGT.finish(mContext);
                         } else {
                             CommonUtils.showShortToast(R.string.user_database_error);

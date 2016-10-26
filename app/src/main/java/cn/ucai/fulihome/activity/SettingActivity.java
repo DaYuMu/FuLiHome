@@ -10,12 +10,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.fulihome.FuLiHomeApplication;
+import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.User;
 import cn.ucai.fulihome.dao.SharePreferenceUtils;
 import cn.ucai.fulihome.utils.CommonUtils;
 import cn.ucai.fulihome.utils.ImageLoader;
 import cn.ucai.fulihome.utils.MFGT;
+import cn.ucai.fulihome.utils.OnSetAvatarListener;
 import cn.ucai.fulihome.view.DisplayUtils;
 
 public class SettingActivity extends BaseActivity {
@@ -28,6 +30,7 @@ public class SettingActivity extends BaseActivity {
     TextView SettingUserNick;
     User user;
     SettingActivity mContext;
+    OnSetAvatarListener mOnSetAvatarListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,8 @@ public class SettingActivity extends BaseActivity {
                 MFGT.finish(this);
                 break;
             case R.id.AvatarSetting:
+                mOnSetAvatarListener = new OnSetAvatarListener(mContext, R.id.SettingLayout,
+                        user.getMuserName(), I.AVATAR_TYPE_USER_PATH);
                 break;
             case R.id.UserNameSetting:
                 CommonUtils.showShortToast(R.string.user_name_connot_be_setting);

@@ -54,7 +54,6 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
     @Override
     protected void initView() {
         radioButtons = new RadioButton[5];
@@ -69,6 +68,7 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
         initFragment();
     }
+
     private void initFragment() {
         fragments = new Fragment[5];
         mNewGoodsFragment = new NewGoodsFragment();
@@ -82,13 +82,14 @@ public class MainActivity extends BaseActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.rl, mNewGoodsFragment)
-                .add(R.id.rl,mboutiqueFragment)
-                .add(R.id.rl,mCategoryFragment)
+                .add(R.id.rl, mboutiqueFragment)
+                .add(R.id.rl, mCategoryFragment)
                 .hide(mboutiqueFragment)
                 .hide(mCategoryFragment)
                 .show(mNewGoodsFragment)
                 .commit();
     }
+
     @Override
     protected void setListener() {
 
@@ -110,7 +111,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btnPersonal:
                 L.e("MainActivity.onCheckedChange.btnPersonal:");
-                if (FuLiHomeApplication.username == null) {
+                if (FuLiHomeApplication.getUser() == null) {
                     MFGT.gotoLoginActivity(this);
                 } else {
                     index = 4;
@@ -130,7 +131,7 @@ public class MainActivity extends BaseActivity {
             }
             fragmentTransaction.show(fragments[index]).commit();
             setRadioButtonStatus();
-            currentindex=index;
+            currentindex = index;
         }
     }
 
@@ -161,7 +162,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        L.e(TAG+"MainActivity.onActivityResult.result"+requestCode);
+        L.e(TAG + "MainActivity.onActivityResult.result" + requestCode);
         if (requestCode == I.REQUEST_CODE_LOGIN && FuLiHomeApplication.getUser() != null) {
             index = 4;
         }

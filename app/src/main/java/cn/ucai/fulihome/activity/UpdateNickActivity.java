@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,7 +13,6 @@ import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.Result;
 import cn.ucai.fulihome.bean.User;
-import cn.ucai.fulihome.dao.SharePreferenceUtils;
 import cn.ucai.fulihome.dao.UserDao;
 import cn.ucai.fulihome.net.NetDao;
 import cn.ucai.fulihome.net.OkHttpUtils;
@@ -98,7 +96,7 @@ public class UpdateNickActivity extends BaseActivity {
                         L.e(TAG+"得到的用户信息"+user);
                         // 调用UserDao中的保存用户的方法。
                         UserDao userDao = new UserDao(mContext);
-                        boolean isSuccess = userDao.saceUser(user);
+                        boolean isSuccess = userDao.saveUser(user);
                         if (isSuccess) {
 //                            SharePreferenceUtils.getInstance(mContext).saveUser(user.getMuserName());
                             FuLiHomeApplication.setUser(user);
