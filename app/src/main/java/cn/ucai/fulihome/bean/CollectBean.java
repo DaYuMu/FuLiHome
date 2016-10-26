@@ -1,8 +1,5 @@
 package cn.ucai.fulihome.bean;
 
-/**
- * Created by Administrator on 2016/10/13 0013.
- */
 public class CollectBean {
 
     /**
@@ -17,7 +14,7 @@ public class CollectBean {
      */
 
     private int id;
-    private int userName;
+    private String userName;
     private int goodsId;
     private String goodsName;
     private String goodsEnglishName;
@@ -28,18 +25,6 @@ public class CollectBean {
     public CollectBean() {
     }
 
-    public CollectBean(int id, int userName, int goodsId, String goodsName, String goodsEnglishName,
-                       String goodsThumb, String goodsImg, long addTime) {
-        this.id = id;
-        this.userName = userName;
-        this.goodsId = goodsId;
-        this.goodsName = goodsName;
-        this.goodsEnglishName = goodsEnglishName;
-        this.goodsThumb = goodsThumb;
-        this.goodsImg = goodsImg;
-        this.addTime = addTime;
-    }
-
     public int getId() {
         return id;
     }
@@ -48,11 +33,11 @@ public class CollectBean {
         this.id = id;
     }
 
-    public int getUserName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setUserName(int userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
