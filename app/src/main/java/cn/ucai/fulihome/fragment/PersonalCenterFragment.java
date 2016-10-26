@@ -70,7 +70,7 @@ public class PersonalCenterFragment extends BaseFragment {
         L.e(TAG+"user"+user);
         if (user != null) {
             ImageLoader.setAvatar(ImageLoader.getAvatar(user),mContext,UserAvatar);
-            UserName.setText(user.getMuserName());
+            UserName.setText(user.getMuserNick());
         }
     }
 
