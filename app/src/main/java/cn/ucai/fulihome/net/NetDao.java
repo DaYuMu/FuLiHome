@@ -6,7 +6,9 @@ import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.bean.BoutiqueBean;
 import cn.ucai.fulihome.bean.CategoryChildBean;
 import cn.ucai.fulihome.bean.CategoryGroupBean;
+import cn.ucai.fulihome.bean.CollectBean;
 import cn.ucai.fulihome.bean.GoodsDetailsBean;
+import cn.ucai.fulihome.bean.MessageBean;
 import cn.ucai.fulihome.bean.NewGoodsBean;
 import cn.ucai.fulihome.bean.Result;
 import cn.ucai.fulihome.bean.User;
@@ -152,6 +154,99 @@ public class NetDao {
                 .addParam(I.User.USER_NAME,name)
                 .addParam(I.User.NICK,nick)
                 .targetClass(String.class)
+                .execute(listener);
+    }
+
+    /**
+     * 下载收藏商品的数量
+     * @param context
+     * @param userName
+     * @param listener
+     */
+    public static void syncUserInfo(Context context, String userName,
+                               OkHttpUtils.OnCompleteListener<String> listener) {
+        OkHttpUtils<String> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_FIND_USER)
+                .addParam(I.User.USER_NAME,userName)
+                .targetClass(String.class)
+                .execute(listener);
+    }
+
+    /**
+     * 得到收藏商品的数量
+     * @param context
+     * @param username
+     * @param listener
+     */
+    public static void getCollectCount(Context context, String username,
+                                       OkHttpUtils.OnCompleteListener<MessageBean> listener) {
+        OkHttpUtils<MessageBean> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_FIND_COLLECT_COUNT)
+                .addParam(I.Collect.USER_NAME,username)
+                .targetClass(MessageBean.class)
+                .execute(listener);
+    }
+
+    /**
+     * 下载收藏的商品的详情
+     * @param context
+     * @param username
+     * @param pageId
+     * @param listener
+     */
+    public static void downloadCollects(Context context, String username, int pageId,
+                                        OkHttpUtils.OnCompleteListener<CollectBean[]> listener) {
+        OkHttpUtils<CollectBean[]> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_FIND_COLLECTS)
+                .addParam(I.Collect.USER_NAME,username)
+                .addParam(I.PAGE_ID,String.valueOf(pageId))
+                .addParam(I.PAGE_SIZE,String.valueOf(I.PAGE_SIZE_DEFAULT))
+                .targetClass(CollectBean[].class)
+                .execute(listener);
+
+    }
+
+    /**
+     * 下载删除已收藏的商品信息的方法
+     * @param context
+     * @param username
+     * @param goodsId
+     * @param listener
+     */
+    public static void deleteCollects(Context context, String username, int goodsId,
+                                      OkHttpUtils.OnCompleteListener<MessageBean> listener) {
+        OkHttpUtils<MessageBean> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_DELETE_COLLECT)
+                .addParam(I.Collect.USER_NAME,username)
+                .addParam(I.Collect.GOODS_ID,String.valueOf(goodsId))
+                .targetClass(MessageBean.class)
+                .execute(listener);
+    }
+
+    /**
+     * 下载商品收藏的图标的变化信息
+     * @param context
+     * @param username
+     * @param goodsId
+     * @param listener
+     */
+    public static void isCollect(Context context, String username, int goodsId,
+                                      OkHttpUtils.OnCompleteListener<MessageBean> listener) {
+        OkHttpUtils<MessageBean> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_IS_COLLECT)
+                .addParam(I.Collect.USER_NAME,username)
+                .addParam(I.Collect.GOODS_ID,String.valueOf(goodsId))
+                .targetClass(MessageBean.class)
+                .execute(listener);
+    }
+
+    public static void addCollect(Context context, String username, int goodsId,
+                                  OkHttpUtils.OnCompleteListener<MessageBean> listener) {
+        OkHttpUtils<MessageBean> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_ADD_COLLECT)
+                .addParam(I.Collect.USER_NAME,username)
+                .addParam(I.Collect.GOODS_ID,String.valueOf(goodsId))
+                .targetClass(MessageBean.class)
                 .execute(listener);
     }
 }
