@@ -2,19 +2,19 @@ package cn.ucai.fulihome.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.ucai.fulihome.FuLiHomeApplication;
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.Albums;
 import cn.ucai.fulihome.bean.GoodsDetailsBean;
+import cn.ucai.fulihome.bean.MessageBean;
+import cn.ucai.fulihome.bean.User;
 import cn.ucai.fulihome.net.NetDao;
 import cn.ucai.fulihome.net.OkHttpUtils;
 import cn.ucai.fulihome.utils.CommonUtils;
@@ -25,6 +25,8 @@ import cn.ucai.fulihome.view.SlideAutoLoopView;
 
 
 public class NewGoodsDetailsActivity extends BaseActivity {
+    private static final String TAG = NewGoodsDetailsActivity.class.getSimpleName();
+
     @BindView(R.id.agoPrice)
     TextView agoPrice;
     @BindView(R.id.currentPrice)
@@ -42,20 +44,26 @@ public class NewGoodsDetailsActivity extends BaseActivity {
     @BindView(R.id.NewGoodsDetails)
     TextView NewGoodsDetails;
 
-    GoodsDetailsBean detailsBean;
-   int position;
+    int position;
+
+    boolean isCollected = false;
+
+    NewGoodsDetailsActivity mContext;
+    @BindView(R.id.ivTitleCollect)
+    ImageView ivTitleCollect;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_new_goods_details);
         ButterKnife.bind(this);
         Intent intent = getIntent();
+        mContext = this;
         position = intent.getIntExtra(I.Goods.KEY_GOODS_ID, 0);
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void initView() {
-
     }
 
     @Override
@@ -65,7 +73,7 @@ public class NewGoodsDetailsActivity extends BaseActivity {
             public void onSuccess(GoodsDetailsBean result) {
                 if (result != null) {
                     showGoodsDateils(result);
-                }else {
+                } else {
                     finish();
                 }
             }
@@ -76,8 +84,8 @@ public class NewGoodsDetailsActivity extends BaseActivity {
                 EnglishName.setText(result.getGoodsEnglishName());
                 ChinaName.setText(result.getGoodsName());
                 NewGoodsDetails.setText(result.getGoodsBrief());
-                L.e("main","商品的详情加载完成");
-                SlideImage.startPlayLoop(FlowImage,getAlbumImgUrl(result),getAlbumCount(result));
+                L.e("main", "商品的详情加载完成");
+                SlideImage.startPlayLoop(FlowImage, getAlbumImgUrl(result), getAlbumCount(result));
 
             }
 
@@ -90,10 +98,10 @@ public class NewGoodsDetailsActivity extends BaseActivity {
 
             private String[] getAlbumImgUrl(GoodsDetailsBean detailsBean) {
                 String[] url = new String[]{};
-                if (detailsBean.getProperties()!= null && detailsBean.getProperties().length > 0) {
+                if (detailsBean.getProperties() != null && detailsBean.getProperties().length > 0) {
                     Albums[] albums = detailsBean.getProperties()[0].getAlbums();
                     url = new String[albums.length];
-                    for (int i=0;i<albums.length;i++) {
+                    for (int i = 0; i < albums.length; i++) {
                         url[i] = albums[i].getImgUrl();
                     }
                 }
@@ -102,7 +110,7 @@ public class NewGoodsDetailsActivity extends BaseActivity {
 
             @Override
             public void onError(String error) {
-                    finish();
+                finish();
                 CommonUtils.showShortToast(error);
             }
         });
@@ -118,4 +126,90 @@ public class NewGoodsDetailsActivity extends BaseActivity {
         MFGT.finish(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isCollect();
+    }
+
+    @OnClick(R.id.ivTitleCollect)
+    public void onCollectChilk() {
+        User user = FuLiHomeApplication.getUser();
+        if (user == null) {
+            MFGT.gotoLoginActivity(mContext);
+        } else {
+            if (isCollected) {
+                NetDao.deleteCollects(mContext, user.getMuserName(), position, new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                    @Override
+                    public void onSuccess(MessageBean result) {
+                        if (result != null && result.isSuccess()) {
+                            isCollected = !isCollected;
+                            updateGoodCollectStatus();
+                            CommonUtils.showShortToast(result.getMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+            } else {
+                NetDao.addCollect(mContext, user.getMuserName(), position, new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                    @Override
+                    public void onSuccess(MessageBean result) {
+                        if (result != null && result.isSuccess()) {
+                            isCollected = !isCollected;
+                            updateGoodCollectStatus();
+                            CommonUtils.showShortToast(result.getMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+            }
+        }
+    }
+
+
+
+    public void isCollect() {
+        final User user = FuLiHomeApplication.getUser();
+        if (user != null) {
+            NetDao.isCollect(mContext, user.getMuserName(), position, new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                @Override
+                public void onSuccess(MessageBean result) {
+                    L.e(TAG + "isCollect.success.start" + result);
+                    if (result != null && result.isSuccess()) {
+                        isCollected = true;
+                        L.e(TAG + "updateGoodCollectStatus.start");
+                    }
+                    updateGoodCollectStatus();
+                }
+
+                @Override
+                public void onError(String error) {
+                    L.e(TAG + "isCollect.onError.start");
+                }
+
+            });
+
+        } else {
+            finish();
+        }
+        updateGoodCollectStatus();
+    }
+
+    private void updateGoodCollectStatus() {
+        if (isCollected) {
+            ivTitleCollect.setImageResource(R.mipmap.bg_collect_out);
+            L.e(TAG+"collect_out");
+        } else {
+            ivTitleCollect.setImageResource(R.mipmap.bg_collect_in);
+            L.e(TAG+"collect_in");
+        }
+    }
 }
