@@ -76,7 +76,7 @@ public class PersonalCenterFragment extends BaseFragment {
 
     @OnClick({R.id.Title_Settings,R.id.ToSetting})
     public void onClick() {
-        L.e(TAG+"PersonalCenterFragment.onUpdateNickClick");
+        L.e(TAG+"@OnClick({R.id.Title_Settings,R.id.ToSetting})start");
         MFGT.gotoSettingActivity(mContext);
     }
 }

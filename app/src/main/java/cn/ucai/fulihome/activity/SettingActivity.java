@@ -16,6 +16,7 @@ import cn.ucai.fulihome.bean.User;
 import cn.ucai.fulihome.dao.SharePreferenceUtils;
 import cn.ucai.fulihome.utils.CommonUtils;
 import cn.ucai.fulihome.utils.ImageLoader;
+import cn.ucai.fulihome.utils.L;
 import cn.ucai.fulihome.utils.MFGT;
 import cn.ucai.fulihome.utils.OnSetAvatarListener;
 import cn.ucai.fulihome.view.DisplayUtils;
@@ -34,10 +35,12 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        L.e("SettingActivity.onCreate.start");
         setContentView(R.layout.activity_setting);
         mContext = this;
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
+        L.e("SettingActivity.onCreate.end");
     }
 
     @Override
@@ -45,8 +48,7 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void showinfo() {
-        user = FuLiHomeApplication.getUser();
-        if (user == null) {
+        if (user != null) {
             ImageLoader.setAvatar(ImageLoader.getAvatar(user), mContext, DefaultAvatar);
             SettingUsername.setText(user.getMuserName());
             SettingUserNick.setText(user.getMuserNick());
@@ -54,6 +56,8 @@ public class SettingActivity extends BaseActivity {
     }
     @Override
     protected void initData() {
+        //  先得到FuLiHomeApplication的用户信息，再判断是否为空，再进行操作。
+        user = FuLiHomeApplication.getUser();
         if (user == null) {
             finish();
             return;
