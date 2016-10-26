@@ -12,6 +12,7 @@ import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.activity.BoutiqueChildActivity;
 import cn.ucai.fulihome.activity.CategoryChildActivity;
+import cn.ucai.fulihome.activity.CollectsActivity;
 import cn.ucai.fulihome.activity.LoginActivity;
 import cn.ucai.fulihome.activity.MainActivity;
 import cn.ucai.fulihome.activity.NewGoodsDetailsActivity;
@@ -67,11 +68,20 @@ public class MFGT {
         startActivity(context,intent);
     }
 
+    /**
+     * 去往LoginActivity的方法
+     * @param context
+     */
     public static void gotoLoginActivity(Activity context){
         Intent intent = new Intent();
         intent.setClass(context, LoginActivity.class);
         startActivityForResult(context,intent,I.REQUEST_CODE_LOGIN);
     }
+
+    /**
+     * 去往RegisterActivity的方法
+     * @param context
+     */
     public static void gotoRegisterActivity(Activity context){
         Intent intent = new Intent();
         intent.setClass(context, RegisterActivity.class);
@@ -84,12 +94,26 @@ public class MFGT {
         context.overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
     }
 
+    /**
+     * 去往SettingActivity的方法
+     * @param context
+     */
     public static void gotoSettingActivity(Activity context) {
         L.e("MFGT.gotoSettingActivity.start");
         startActivity(context,SettingActivity.class);
     }
+
+    /**
+     * 去往UpdateNickActivity的方法
+     * @param context
+     */
     public static void gotoUpdateNickActivity(Activity context) {
         startActivity(context,UpdateNickActivity.class);
     }
+
+    public static void gotoCollectActivity(Activity context) {
+        startActivity(context,CollectsActivity.class);
+    }
+
 }
 
