@@ -27,7 +27,7 @@ public class SharePreferenceUtils  {
     }
 
     public void saveUser(String name) {
-        mEditor.putString(SHARE_KEY_USER_NAME, null);
+        mEditor.putString(SHARE_KEY_USER_NAME, name);
         mEditor.commit();
     }
 

@@ -1,6 +1,7 @@
 package cn.ucai.fulihome.dao;
 
 import android.content.Context;
+import android.util.Log;
 
 import cn.ucai.fulihome.bean.User;
 
@@ -8,6 +9,8 @@ import cn.ucai.fulihome.bean.User;
  * Created by Administrator on 2016/10/24 0024.
  */
 public class UserDao {
+    private static final String TAG = UserDao.class.getSimpleName();
+
     public static final String USER_TABLE_NAME = "t_superwechat_user";
     public static final String USER_COLUMN_NAME = "m_user_name";
     public static final String USER_COLUMN_NICK = "m_user_nick";
@@ -20,7 +23,8 @@ public class UserDao {
     public UserDao(Context context) {
         DBManager.getInstance().onInit(context);
     }
-    public boolean saceUser(User user) {
+    public boolean saveUser(User user) {
+        Log.e(TAG,"user="+user);
         return DBManager.getInstance().saveUser(user);
     }
 

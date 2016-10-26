@@ -10,7 +10,7 @@ import cn.ucai.fulihome.bean.User;
  */
 public class FuLiHomeApplication extends Application {
     public static FuLiHomeApplication application;
-    private static  FuLiHomeApplication instance = null;
+    private static  FuLiHomeApplication instance;
     public static String username;
     public static User user;
 

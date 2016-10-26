@@ -6,11 +6,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.bean.User;
+import cn.ucai.fulihome.utils.L;
 
 /**
  * Created by Administrator on 2016/10/24 0024.
  */
 public class DBOpenHelper extends SQLiteOpenHelper {
+    private static final String TAG= DBOpenHelper.class.getSimpleName();
     private static final int DATABASE_VERSION = 1;
     public static DBOpenHelper instance;
 
@@ -46,6 +48,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(FULIHOME_USER_TABLE_NAME);
+        L.e(TAG,"Table sql="+FULIHOME_USER_TABLE_NAME);
     }
 
     @Override
