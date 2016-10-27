@@ -4,6 +4,7 @@ import android.content.Context;
 
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.bean.BoutiqueBean;
+import cn.ucai.fulihome.bean.CartBean;
 import cn.ucai.fulihome.bean.CategoryChildBean;
 import cn.ucai.fulihome.bean.CategoryGroupBean;
 import cn.ucai.fulihome.bean.CollectBean;
@@ -64,6 +65,20 @@ public class NetDao {
         OkHttpUtils<BoutiqueBean[]> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_FIND_BOUTIQUES)
                 .targetClass(BoutiqueBean[].class)
+                .execute(listener);
+    }
+
+    /**
+     * 下载购物车数据
+     *http://101.251.196.90:8000/FuLiCenterServerV2.0/findCarts?userName=a95270011
+     * @param context
+     * @param listener
+     */
+    public static void downloadCort(Context context, String username ,OkHttpUtils.OnCompleteListener<CartBean[]> listener) {
+        OkHttpUtils<CartBean[]> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_FIND_CARTS)
+                .addParam(I.Cart.USER_NAME, username)
+                .targetClass(CartBean[].class)
                 .execute(listener);
     }
 
