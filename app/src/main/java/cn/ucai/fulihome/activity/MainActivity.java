@@ -14,6 +14,7 @@ import cn.ucai.fulihome.FuLiHomeApplication;
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.fragment.BoutiqueFragment;
+import cn.ucai.fulihome.fragment.CartFragment;
 import cn.ucai.fulihome.fragment.CategoryFragment;
 import cn.ucai.fulihome.fragment.NewGoodsFragment;
 import cn.ucai.fulihome.fragment.PersonalCenterFragment;
@@ -41,6 +42,7 @@ public class MainActivity extends BaseActivity {
     BoutiqueFragment mboutiqueFragment;
     CategoryFragment mCategoryFragment;
     PersonalCenterFragment mPersonalCenterFragment;
+    CartFragment mCartFragment;
 
     int currentindex;
 
@@ -74,18 +76,20 @@ public class MainActivity extends BaseActivity {
         mNewGoodsFragment = new NewGoodsFragment();
         mboutiqueFragment = new BoutiqueFragment();
         mCategoryFragment = new CategoryFragment();
+        mCartFragment  =new CartFragment();
         mPersonalCenterFragment = new PersonalCenterFragment();
         fragments[0] = mNewGoodsFragment;
         fragments[1] = mboutiqueFragment;
         fragments[2] = mCategoryFragment;
+        fragments[3] = mCartFragment;
         fragments[4] = mPersonalCenterFragment;
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.rl, mNewGoodsFragment)
-                .add(R.id.rl, mboutiqueFragment)
-                .add(R.id.rl, mCategoryFragment)
-                .hide(mboutiqueFragment)
-                .hide(mCategoryFragment)
+//                .add(R.id.rl, mboutiqueFragment)
+//                .add(R.id.rl, mCategoryFragment)
+//                .hide(mboutiqueFragment)
+//                .hide(mCategoryFragment)
                 .show(mNewGoodsFragment)
                 .commit();
     }
@@ -107,7 +111,11 @@ public class MainActivity extends BaseActivity {
                 index = 2;
                 break;
             case R.id.btnCart:
-                index = 3;
+                if (FuLiHomeApplication.getUser() == null) {
+                    MFGT.gotoLoginActivityFromCart(this);
+                } else {
+                    index = 3;
+                }
                 break;
             case R.id.btnPersonal:
                 L.e("MainActivity.onCheckedChange.btnPersonal:");
@@ -163,8 +171,14 @@ public class MainActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         L.e(TAG + "MainActivity.onActivityResult.result" + requestCode);
-        if (requestCode == I.REQUEST_CODE_LOGIN && FuLiHomeApplication.getUser() != null) {
-            index = 4;
+        if (FuLiHomeApplication.getUser() != null) {
+            L.e(TAG+"resultcode = "+requestCode);
+            if (requestCode == I.REQUEST_CODE_LOGIN) {
+                index = 4;
+            }
+            if (requestCode == I.REQUEST_CODE_LOGIN_FROM_CART) {
+                index = 3;
+            }
         }
     }
 }

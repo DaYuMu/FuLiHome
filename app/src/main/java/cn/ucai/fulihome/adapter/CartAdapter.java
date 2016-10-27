@@ -18,7 +18,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.CartBean;
-import cn.ucai.fulihome.utils.MFGT;
+import cn.ucai.fulihome.bean.GoodsDetailsBean;
+import cn.ucai.fulihome.utils.ImageLoader;
 
 
 /**
@@ -43,15 +44,15 @@ public class CartAdapter extends Adapter {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        CartViewHolder CartViewHolder = (CartViewHolder) holder;
-        CartBean CartBean = mList.get(position);
-//        ImageLoader.downloadImg(mContext,((CartViewHolder) holder).ivBoutique,CartBean.getImageurl());
-//        CartViewHolder.BoutiqueTitle.setText(CartBean.getTitle());
-//        CartViewHolder.BoutiqueGoodsName.setText(CartBean.getName());
-//        CartViewHolder.BoutiqueDetails.setText(CartBean.getDescription());
-//        //                                     Tag可以是Object类型。
-//        CartViewHolder.BoutiqueRelativeLayout.setTag(CartBean);
-
+        CartViewHolder cartViewHolder = (CartViewHolder) holder;
+        CartBean cartBean = mList.get(position);
+        GoodsDetailsBean goods = cartBean.getGoods();
+        if (goods != null) {
+        ImageLoader.downloadImg(mContext,cartViewHolder.ivCartGood,goods.getGoodsThumb());
+        cartViewHolder.CartGoodTitle.setText(goods.getGoodsName());
+        cartViewHolder.CartGoodsPrice.setText(goods.getCurrencyPrice());
+        }
+        cartViewHolder.CartGoodsCount.setText("("+cartBean.getCount()+")");
     }
 
 
@@ -80,7 +81,7 @@ public class CartAdapter extends Adapter {
         @BindView(R.id.AddCart)
         ImageView AddCart;
         @BindView(R.id.CartGoodsCount)
-        android.widget.TextView CartGoodsCount;
+        TextView CartGoodsCount;
         @BindView(R.id.DeleteCart)
         ImageView DeleteCart;
         @BindView(R.id.LayoutCartGoods)
