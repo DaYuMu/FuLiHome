@@ -1,7 +1,6 @@
 package cn.ucai.fulihome.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -9,13 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.CartBean;
 import cn.ucai.fulihome.bean.GoodsDetailsBean;
@@ -38,7 +37,7 @@ public class CartAdapter extends Adapter {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ViewHolder holder = new CartViewHolder(LayoutInflater.from(mContext)
-                .inflate(R.layout.item_cart,parent,false));
+                .inflate(R.layout.item_cart, parent, false));
         return holder;
     }
 
@@ -48,11 +47,11 @@ public class CartAdapter extends Adapter {
         CartBean cartBean = mList.get(position);
         GoodsDetailsBean goods = cartBean.getGoods();
         if (goods != null) {
-        ImageLoader.downloadImg(mContext,cartViewHolder.ivCartGood,goods.getGoodsThumb());
-        cartViewHolder.CartGoodTitle.setText(goods.getGoodsName());
-        cartViewHolder.CartGoodsPrice.setText(goods.getCurrencyPrice());
+            ImageLoader.downloadImg(mContext, cartViewHolder.ivCartGood, goods.getGoodsThumb());
+            cartViewHolder.CartGoodTitle.setText(goods.getGoodsName());
+            cartViewHolder.CartGoodsPrice.setText(goods.getCurrencyPrice());
         }
-        cartViewHolder.CartGoodsCount.setText(cartBean.getCount());
+//        cartViewHolder.CartGoodsCount.setText(cartBean.getCount());
 //        cartViewHolder.Check   设置为不选择状态
 //        cartViewHolder
     }
@@ -72,7 +71,6 @@ public class CartAdapter extends Adapter {
         notifyDataSetChanged();
     }
 
-    
 
     class CartViewHolder extends ViewHolder {
         @BindView(R.id.CheckBox)
