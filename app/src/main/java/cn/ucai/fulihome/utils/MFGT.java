@@ -16,6 +16,7 @@ import cn.ucai.fulihome.activity.CollectsActivity;
 import cn.ucai.fulihome.activity.LoginActivity;
 import cn.ucai.fulihome.activity.MainActivity;
 import cn.ucai.fulihome.activity.NewGoodsDetailsActivity;
+import cn.ucai.fulihome.activity.OrderActivity;
 import cn.ucai.fulihome.activity.RegisterActivity;
 import cn.ucai.fulihome.activity.SettingActivity;
 import cn.ucai.fulihome.activity.UpdateNickActivity;
@@ -119,6 +120,9 @@ public class MFGT {
 
     public static void gotoCollectActivity(Activity context) {
         startActivity(context,CollectsActivity.class);
+    }
+    public static void gotoOrderActivity(Activity context) {
+        startActivity(context,OrderActivity.class);
     }
 
 }

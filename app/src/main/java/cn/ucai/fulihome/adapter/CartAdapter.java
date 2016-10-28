@@ -19,6 +19,7 @@ import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.CartBean;
 import cn.ucai.fulihome.bean.GoodsDetailsBean;
 import cn.ucai.fulihome.utils.ImageLoader;
+import cn.ucai.fulihome.utils.MFGT;
 
 
 public class CartAdapter extends Adapter {

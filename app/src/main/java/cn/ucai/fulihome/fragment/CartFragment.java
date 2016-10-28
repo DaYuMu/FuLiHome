@@ -20,14 +20,13 @@ import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.activity.MainActivity;
 import cn.ucai.fulihome.adapter.CartAdapter;
 import cn.ucai.fulihome.bean.CartBean;
-import cn.ucai.fulihome.bean.Result;
 import cn.ucai.fulihome.bean.User;
 import cn.ucai.fulihome.net.NetDao;
 import cn.ucai.fulihome.net.OkHttpUtils;
 import cn.ucai.fulihome.utils.CommonUtils;
 import cn.ucai.fulihome.utils.ConvertUtils;
 import cn.ucai.fulihome.utils.L;
-import cn.ucai.fulihome.utils.ResultUtils;
+import cn.ucai.fulihome.utils.MFGT;
 
 /**
  * Created by Administrator on 2016/10/19 0019.
@@ -105,14 +104,14 @@ public class CartFragment extends BaseFragment {
                     SwipeRefreshLayout.setEnabled(false);
                     if (result != null && result.length > 0) {
                         ArrayList<CartBean> list = ConvertUtils.array2List(result);
-                        L.e(TAG,"list[0]="+list.get(0));
+                        L.e(TAG, "list[0]=" + list.get(0));
                         CartAdapter.initData(list);
                     }
                 }
 
                 @Override
                 public void onError(String error) {
-                    L.e(TAG,"CartFragment:onError");
+                    L.e(TAG, "CartFragment:onError");
                     //  设置刷新中··· 为不再刷新，不可见状态
                     tvNewGoods.setVisibility(View.GONE);
                     SwipeRefreshLayout.setEnabled(false);
@@ -160,5 +159,7 @@ public class CartFragment extends BaseFragment {
 
     @OnClick(R.id.Charge)
     public void onClick() {
+        MFGT.gotoOrderActivity(mContext);
     }
+
 }
