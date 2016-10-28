@@ -53,6 +53,15 @@ public class CartAdapter extends Adapter {
 //        cartViewHolder
     }
 
+    @OnClick({R.id.ivCartGood, R.id.CartGoodTitle, R.id.CartGoodsPrice})
+    //  实现点击商品图片，商品名称，商品价格进入商品详情页面的点击事件。
+    public void gotoDetail(View view) {
+//        final int posotion = AddCart.getTag();
+//        CartBean cartBean = mList.get(posotion);
+//        MFGT.gotoNewGoodsDetailsActivity(mContext,cartBean.getGoodsId());
+    }
+
+
 
     @Override
     public int getItemCount() {
