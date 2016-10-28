@@ -21,9 +21,6 @@ import cn.ucai.fulihome.bean.GoodsDetailsBean;
 import cn.ucai.fulihome.utils.ImageLoader;
 
 
-/**
- * Created by Administrator on 2016/10/19 0019.
- */
 public class CartAdapter extends Adapter {
     Context mContext;
     ArrayList<CartBean> mList;
@@ -51,7 +48,7 @@ public class CartAdapter extends Adapter {
             cartViewHolder.CartGoodTitle.setText(goods.getGoodsName());
             cartViewHolder.CartGoodsPrice.setText(goods.getCurrencyPrice());
         }
-//        cartViewHolder.CartGoodsCount.setText(cartBean.getCount());
+        cartViewHolder.CartGoodsCount.setTag(cartBean.getCount());
 //        cartViewHolder.Check   设置为不选择状态
 //        cartViewHolder
     }
@@ -95,6 +92,22 @@ public class CartAdapter extends Adapter {
         CartViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+        }
+    }
+
+
+    @OnClick({R.id.CheckBox, R.id.AddCart, R.id.DeleteCart})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.CheckBox:
+                // 点击圆圈改变购物车里商品的选中状态，改变合计价钱
+                break;
+            case R.id.AddCart:
+                //  添加购物车里的商品，改变合计价钱与节省价钱
+                break;
+            case R.id.DeleteCart:
+                //  删除购物车里的商品，改变合计价钱与节省价钱，物品最少只能为1。
+                break;
         }
     }
 }
