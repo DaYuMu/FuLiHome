@@ -13,11 +13,65 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.ucai.fulihome.I;
+import cn.ucai.fulihome.bean.CartBean;
+import cn.ucai.fulihome.bean.GoodsDetailsBean;
 import cn.ucai.fulihome.bean.Result;
 import cn.ucai.fulihome.bean.User;
 
 
 public class ResultUtils {
+
+    public static ArrayList<CartBean> getCartFromJson(String jsonStr) {
+        ArrayList<CartBean> list = null;
+        try {
+            if (jsonStr == null || jsonStr.isEmpty() || jsonStr.length() < 3) {
+                JSONArray array = new JSONArray(jsonStr);
+                if (array != null) {
+                    list = new ArrayList<>();
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject jsonObject = new JSONObject(jsonStr);
+                        CartBean cartBean = new CartBean();
+                        if(!jsonObject.isNull("id")) {
+                            cartBean.setId(jsonObject.getInt("id"));
+                        }
+                        if(!jsonObject.isNull("userName")) {
+                            cartBean.setUserName(jsonObject.getString("userName"));
+                        }
+                        if(!jsonObject.isNull("goodsId")) {
+                            cartBean.setGoodsId(jsonObject.getInt("goodsId"));
+                        }
+                        if(!jsonObject.isNull("count")) {
+                            cartBean.setCount(jsonObject.getInt("count"));
+                        }
+                        if(!jsonObject.isNull("isChecked")) {
+                            cartBean.setChecked(false);
+                        }
+                        if(!jsonObject.isNull("goods")) {
+                            JSONObject jsonRetData = jsonObject.getJSONObject("goods");
+                            if (jsonRetData != null) {
+                                Log.e("Utils", "jsonRetData=" + jsonRetData);
+                                String date;
+                                try {
+                                    date = URLDecoder.decode(jsonRetData.toString(), I.UTF_8);
+                                    Log.e("Utils", "jsonRetData=" + date);
+                                    GoodsDetailsBean t = new Gson().fromJson(date, GoodsDetailsBean.class);
+                                    cartBean.setGoods(t);
+                                } catch (UnsupportedEncodingException e1) {
+                                    e1.printStackTrace();
+                                }
+                            }
+                        }
+                        list.add(cartBean);
+                    }
+                    return list;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public static <T extends User> Result getResultFromJson(String jsonStr, Class<T> clazz){
         Result result = new Result();
         try {

@@ -41,8 +41,8 @@ public class MainActivity extends BaseActivity {
     NewGoodsFragment mNewGoodsFragment;
     BoutiqueFragment mboutiqueFragment;
     CategoryFragment mCategoryFragment;
-    PersonalCenterFragment mPersonalCenterFragment;
     CartFragment mCartFragment;
+    PersonalCenterFragment mPersonalCenterFragment;
 
     int currentindex;
 
@@ -88,6 +88,8 @@ public class MainActivity extends BaseActivity {
                 .add(R.id.rl, mNewGoodsFragment)
 //                .add(R.id.rl, mboutiqueFragment)
 //                .add(R.id.rl, mCategoryFragment)
+//                .add(R.id.rl,mCartFragment)
+//                .hide(mCartFragment)
 //                .hide(mboutiqueFragment)
 //                .hide(mCategoryFragment)
                 .show(mNewGoodsFragment)

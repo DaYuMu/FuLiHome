@@ -1,6 +1,7 @@
 package cn.ucai.fulihome.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.CartBean;
 import cn.ucai.fulihome.bean.GoodsDetailsBean;
@@ -38,7 +38,7 @@ public class CartAdapter extends Adapter {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ViewHolder holder = new CartViewHolder(LayoutInflater.from(mContext)
-                .inflate(R.layout.item_cart, null));
+                .inflate(R.layout.item_cart,parent,false));
         return holder;
     }
 
@@ -52,7 +52,9 @@ public class CartAdapter extends Adapter {
         cartViewHolder.CartGoodTitle.setText(goods.getGoodsName());
         cartViewHolder.CartGoodsPrice.setText(goods.getCurrencyPrice());
         }
-        cartViewHolder.CartGoodsCount.setText("("+cartBean.getCount()+")");
+        cartViewHolder.CartGoodsCount.setText(cartBean.getCount());
+//        cartViewHolder.Check   设置为不选择状态
+//        cartViewHolder
     }
 
 
@@ -65,8 +67,9 @@ public class CartAdapter extends Adapter {
     public void initData(ArrayList<CartBean> list) {
         if (mList != null) {
             mList.clear();
-            mList.addAll(list);
         }
+        mList.addAll(list);
+        notifyDataSetChanged();
     }
 
     
@@ -89,7 +92,7 @@ public class CartAdapter extends Adapter {
         @BindView(R.id.CartGoodsPrice)
         TextView CartGoodsPrice;
         @BindView(R.id.BoutiqueRelativeLayout)
-        RelativeLayout BoutiqueRelativeLayout;
+        LinearLayout BoutiqueRelativeLayout;
 
         CartViewHolder(View view) {
             super(view);
