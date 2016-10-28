@@ -34,7 +34,7 @@
             android:id="@+id/CartGoodTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:text="商品标题商品标题"/>
         <LinearLayout
             android:layout_marginTop="10dp"
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:text="商品数量"/>
+                android:text="1"/>
             <ImageView
                 android:id="@+id/DeleteCart"
                 android:layout_marginRight="5dp"
@@ -65,9 +65,8 @@
         </LinearLayout>
     </LinearLayout>
     <TextView
+        android:layout_alignParentRight="true"
         android:id="@+id/CartGoodsPrice"
-        android:layout_toRightOf="@id/LayoutCartGoods"
-        android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="￥177"
