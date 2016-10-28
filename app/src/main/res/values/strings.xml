@@ -34,4 +34,7 @@
     <string name="update_user_nick_sucess">update user nick success</string>
     <string name="collect_title">collect title</string>
     <string name="delete_collect_fail">delete collect fail</string>
+    <string name="Waiting_no_empty">waiting no empty</string>
+    <string name="Charg_Phone_error">Charg_Phone_error</string>
+    <string name="Charg_success">Charge success</string>
 </resources>

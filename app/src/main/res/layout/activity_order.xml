@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include layout="@layout/item_login_title" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DDDDDD"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="107dp"
+                android:layout_height="70dp"
+                android:text="收货人"
+                android:gravity="center"
+                android:textSize="27dp"/>
+            <EditText
+                android:id="@+id/UserName"
+                android:layout_width="match_parent"
+                android:layout_height="70dp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DDDDDD"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="107dp"
+                android:layout_height="70dp"
+                android:text="电话"
+                android:gravity="center"
+                android:textSize="27dp"/>
+            <EditText
+                android:id="@+id/Phone"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:inputType="phone"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DDDDDD"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="107dp"
+                android:layout_height="70dp"
+                android:text="城市"
+                android:gravity="center"
+                android:textSize="27dp"/>
+            <Spinner
+                android:id="@+id/City"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/area">
+            </Spinner>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DDDDDD"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="107dp"
+                android:layout_height="70dp"
+                android:text="街道"
+                android:gravity="center"
+                android:textSize="27dp"/>
+            <EditText
+                android:id="@+id/Street"
+                android:layout_width="match_parent"
+                android:layout_height="70dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DDDDDD"/>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/ToBuying"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提交订单"
+        android:textSize="25dp"
+        android:textColor="#FFFFFF"
+        android:background="#FF5511"/>
+
+
+</RelativeLayout>

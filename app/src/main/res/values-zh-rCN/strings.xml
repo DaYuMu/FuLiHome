@@ -32,4 +32,7 @@
     <string name="update_user_nick_sucess">更新用户昵称成功</string>
     <string name="collect_title">收藏的宝贝</string>
     <string name="delete_collect_fail">删除收藏失败</string>
+    <string name="Charg_no_empty">不能为空</string>
+    <string name="Charg_Phone_error">手机号码格式错误</string>
+    <string name="Charg_success">订单提交成功</string>
 </resources>
