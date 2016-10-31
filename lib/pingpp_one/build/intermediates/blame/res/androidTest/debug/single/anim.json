@@ -1,18 +1,18 @@
 [
     {
-        "merged": "/Users/clawpo/github/pingpp-android/lib/pingpp_one/build/intermediates/res/merged/androidTest/debug/anim/dialog_enter.xml",
-        "source": "/Users/clawpo/github/pingpp-android/lib/pingpp_one/build/intermediates/bundles/debug/res/anim/dialog_enter.xml"
+        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\cmbkb_push_bottom_out.xml",
+        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\anim\\cmbkb_push_bottom_out.xml"
     },
     {
-        "merged": "/Users/clawpo/github/pingpp-android/lib/pingpp_one/build/intermediates/res/merged/androidTest/debug/anim/dialog_exit.xml",
-        "source": "/Users/clawpo/github/pingpp-android/lib/pingpp_one/build/intermediates/bundles/debug/res/anim/dialog_exit.xml"
+        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\cmbkb_push_bottom_in.xml",
+        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\anim\\cmbkb_push_bottom_in.xml"
     },
     {
-        "merged": "/Users/clawpo/github/pingpp-android/lib/pingpp_one/build/intermediates/res/merged/androidTest/debug/anim/cmbkb_push_bottom_out.xml",
-        "source": "/Users/clawpo/github/pingpp-android/lib/pingpp_one/build/intermediates/exploded-aar/pingpp-android.lib/pingpp/unspecified/res/anim/cmbkb_push_bottom_out.xml"
+        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_enter.xml",
+        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_enter.xml"
     },
     {
-        "merged": "/Users/clawpo/github/pingpp-android/lib/pingpp_one/build/intermediates/res/merged/androidTest/debug/anim/cmbkb_push_bottom_in.xml",
-        "source": "/Users/clawpo/github/pingpp-android/lib/pingpp_one/build/intermediates/exploded-aar/pingpp-android.lib/pingpp/unspecified/res/anim/cmbkb_push_bottom_in.xml"
+        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_exit.xml",
+        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_exit.xml"
     }
 ]

@@ -1,5 +1,9 @@
 package cn.ucai.fulihome.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -8,6 +12,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.fulihome.FuLiHomeApplication;
+import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.activity.MainActivity;
 import cn.ucai.fulihome.adapter.CartAdapter;
@@ -27,6 +34,7 @@ import cn.ucai.fulihome.utils.CommonUtils;
 import cn.ucai.fulihome.utils.ConvertUtils;
 import cn.ucai.fulihome.utils.L;
 import cn.ucai.fulihome.utils.MFGT;
+import cn.ucai.fulihome.view.SpaceItemDecoration;
 
 /**
  * Created by Administrator on 2016/10/19 0019.
@@ -51,6 +59,12 @@ public class CartFragment extends BaseFragment {
     RecyclerView fragmentRecyclerViewNewGoods;
     @BindView(R.id.SwipeRefreshLayout)
     android.support.v4.widget.SwipeRefreshLayout SwipeRefreshLayout;
+    @BindView(R.id.NoThing)
+    TextView NoThing;
+    @BindView(R.id.JieSuanTitle)
+    RelativeLayout JieSuanTitle;
+
+    UpdateCartBroadcast mUpdateCartBroadcast;
 
     @Nullable
     @Override
@@ -72,6 +86,9 @@ public class CartFragment extends BaseFragment {
     @Override
     protected void setListener() {
         setPullDownListener();
+        IntentFilter filter = new IntentFilter(I.BROADCAST_UPDATE_CART);
+        mUpdateCartBroadcast = new UpdateCartBroadcast();
+        mContext.registerReceiver(mUpdateCartBroadcast, filter);
     }
 
     /**
@@ -105,7 +122,11 @@ public class CartFragment extends BaseFragment {
                     if (result != null && result.length > 0) {
                         ArrayList<CartBean> list = ConvertUtils.array2List(result);
                         L.e(TAG, "list[0]=" + list.get(0));
-                        CartAdapter.initData(list);
+                        mList.addAll(list);
+                        CartAdapter.initData(mList);
+                        setCartLayout(true);
+                    } else {
+                        setCartLayout(false);
                     }
                 }
 
@@ -113,6 +134,7 @@ public class CartFragment extends BaseFragment {
                 public void onError(String error) {
                     L.e(TAG, "CartFragment:onError");
                     //  设置刷新中··· 为不再刷新，不可见状态
+                    setCartLayout(false);
                     tvNewGoods.setVisibility(View.GONE);
                     SwipeRefreshLayout.setEnabled(false);
                     //  设置显示数据异常
@@ -134,6 +156,14 @@ public class CartFragment extends BaseFragment {
         fragmentRecyclerViewNewGoods.setLayoutManager(linearLayoutManager);
         fragmentRecyclerViewNewGoods.setHasFixedSize(true);
         fragmentRecyclerViewNewGoods.setAdapter(CartAdapter);
+        fragmentRecyclerViewNewGoods.addItemDecoration(new SpaceItemDecoration(12));
+        setCartLayout(false);
+    }
+
+    private void setCartLayout(boolean hascart) {
+        JieSuanTitle.setVisibility(hascart ? View.VISIBLE : View.GONE);
+        NoThing.setVisibility(hascart ? View.GONE : View.VISIBLE);
+        fragmentRecyclerViewNewGoods.setVisibility(hascart ? View.VISIBLE : View.GONE);
     }
 
     private void sumPrice() {
@@ -144,7 +174,7 @@ public class CartFragment extends BaseFragment {
                 sumPrice = getPrice(c.getGoods().getCurrencyPrice());
                 rankPrice = getPrice(c.getGoods().getRankPrice());
             }
-            SumPrice.setText("合计：￥=" + Double.valueOf(sumPrice));
+            SumPrice.setText("合计：￥=" + Double.valueOf(rankPrice));
             RankPrice.setText("节省：￥=" + Double.valueOf(sumPrice - rankPrice));
         } else {
             SumPrice.setText("合计：￥=0");
@@ -162,4 +192,20 @@ public class CartFragment extends BaseFragment {
         MFGT.gotoOrderActivity(mContext);
     }
 
+    class UpdateCartBroadcast extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            L.e(TAG,"UpdateCartBroadcast···");
+            sumPrice();
+        }
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mUpdateCartBroadcast != null) {
+            mContext.unregisterReceiver(mUpdateCartBroadcast);
+        }
+    }
 }

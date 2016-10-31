@@ -1,10 +1,12 @@
 package cn.ucai.fulihome.activity;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.pingplusplus.android.PingppLog;
+import com.pingplusplus.libone.PingppOne;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +40,7 @@ public class OrderActivity extends BaseActivity {
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
         // 设置要使用的支付方式
-        PingppOne.enableChannels(new String[]{"wx", "alipay", "upacp", "cnp", "bfb"});
+        /*PingppOne.enableChannels(new String[]{"wx", "alipay", "upacp", "cnp", "bfb"});
         //设置是否支持外卡支付， true：支持， false：不支持， 默认不支持外卡
         PingppOne.SUPPORT_FOREIGN_CARD = true;
         //提交数据的格式，默认格式为json
@@ -48,7 +50,7 @@ public class OrderActivity extends BaseActivity {
         PingppOne.APP_ID = "Ping++ App ID";
         PingppOne.PUBLISHABLE_KEY = "Ping++ Publishable Key";
         //是否开启日志
-        PingppLog.DEBUG = true;
+        PingppLog.DEBUG = true;*/
     }
 
     @Override

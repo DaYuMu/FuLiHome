@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
+        android:id="@+id/JieSuanTitle"
         android:layout_width="match_parent"
         android:layout_height="70dp">
         <LinearLayout
@@ -39,7 +40,34 @@
             android:textSize="20dp"
             android:text="结算"/>
     </RelativeLayout>
-    <include layout="@layout/layout_recyclerview" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/SwipeRefreshLayout"
+        android:background="@color/list_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/layout_refresh_title" />
+            <TextView
+                android:id="@+id/NoThing"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="购物车空空如也····"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragmentRecyclerViewNewGoods"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 </LinearLayout>

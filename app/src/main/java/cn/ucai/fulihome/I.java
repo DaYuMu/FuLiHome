@@ -55,6 +55,7 @@ public interface I {
     int CATEGORY_GOOD=1;
     int CAT_ID=0;
     boolean CART_CHECKED_DEFAULT = false;
+    String BROADCAST_UPDATE_CART = "cn.ucai.fulihome.cart";
 
     interface Goods {
         String KEY_RESULT = "result";
