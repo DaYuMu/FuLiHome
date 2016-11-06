@@ -177,6 +177,13 @@ public class CartAdapter extends Adapter {
                     break;
             }
         }
+
+        @OnClick(R.id.layout_cart_detail)
+        public void carttodetail() {
+            final int delposition = (int) AddCart.getTag();
+            CartBean delcart = mList.get(delposition);
+            MFGT.gotoNewGoodsDetailsActivity(mContext,delcart.getGoodsId());
+        }
     }
 
 
