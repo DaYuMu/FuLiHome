@@ -5,8 +5,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.pingplusplus.android.PingppLog;
-import com.pingplusplus.libone.PingppOne;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,9 +13,14 @@ import butterknife.OnClick;
 import cn.ucai.fulihome.FuLiHomeApplication;
 import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
+import cn.ucai.fulihome.bean.CartBean;
 import cn.ucai.fulihome.bean.User;
+import cn.ucai.fulihome.net.NetDao;
+import cn.ucai.fulihome.net.OkHttpUtils;
 import cn.ucai.fulihome.utils.CommonUtils;
+import cn.ucai.fulihome.utils.L;
 import cn.ucai.fulihome.utils.MFGT;
+import cn.ucai.fulihome.utils.ResultUtils;
 import cn.ucai.fulihome.view.DisplayUtils;
 
 public class OrderActivity extends BaseActivity {
@@ -33,12 +37,20 @@ public class OrderActivity extends BaseActivity {
     EditText UserStreet;
 
     OrderActivity mContext;
+    String cartid = "";
+    User user = null;
+    ArrayList<CartBean> mlist = null;
+    String[] ids = null;
+    int rankPrice = 0;
+    @BindView(R.id.buyingPrice)
+    TextView buyingPrice;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_order);
         mContext = this;
         ButterKnife.bind(this);
+        mlist = new ArrayList<>();
         super.onCreate(savedInstanceState);
         // 设置要使用的支付方式
         /*PingppOne.enableChannels(new String[]{"wx", "alipay", "upacp", "cnp", "bfb"});
@@ -61,7 +73,57 @@ public class OrderActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        String cartid = getIntent().getStringExtra(I.Cart.ID);
+        cartid = getIntent().getStringExtra(I.Cart.ID);
+        user = FuLiHomeApplication.getUser();
+        if (cartid == null || cartid.equals("") || user == null) {
+            finish();
+        }
+        ids = cartid.split(",");
+
+        getOrderList();
+    }
+
+    private void getOrderList() {
+        NetDao.downloadCart(mContext, user.getMuserName(), new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                L.e("public void onSuccess(String s)"+s);
+                ArrayList<CartBean> list = ResultUtils.getCartFromJson(s);
+                L.e("public void onSuccess(String s)"+list);
+                if (list == null || list.size() == 0) {
+                    L.e("if (list == null || list.size() == 0) ");
+                    finish();
+                } else {
+                    mlist.addAll(list);
+                    sumPrice();
+                    L.e("mlist.addAll(list);||sumPrice(); ");
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+
+    private void sumPrice() {
+        rankPrice = 0;
+        if (mlist != null && mlist.size() > 0) {
+            for (CartBean c : mlist) {
+                for (String id : ids) {
+                    if (id.equals(String.valueOf(c.getId()))) {
+                        rankPrice += getPrice(c.getGoods().getRankPrice()) * c.getCount();
+                    }
+                }
+            }
+        }
+        buyingPrice.setText("合计：￥"+Double.valueOf(rankPrice));
+    }
+
+    private int getPrice(String price) {
+        price = price.substring(price.indexOf("￥") + 1);
+        return Integer.valueOf(price);
     }
 
     @Override
@@ -75,29 +137,37 @@ public class OrderActivity extends BaseActivity {
         if (user == null) {
             finish();
         } else {
-            String Waiting = UserName.getText().toString();
-            if (Waiting == null) {
-                CommonUtils.showShortToast(R.string.Charg_no_empty);
+            String username = UserName.getText().toString();
+            if (username == null) {
+                CommonUtils.showShortToast(R.string.username_no_empty);
                 UserName.requestFocus();
-            } else {
-                String Phone = UserPhone.getText().toString();
-                if (Phone == null) {
-                    CommonUtils.showShortToast(R.string.Charg_no_empty);
-                    UserPhone.requestFocus();
-                } else if (Phone.matches("[\\d]{11}")) {
-                    CommonUtils.showShortToast(R.string.Charg_Phone_error);
-                    UserPhone.requestFocus();
-                } else {
-                    String Street = UserStreet.getText().toString();
-                    if (Street == null) {
-                        CommonUtils.showShortToast(R.string.Charg_no_empty);
-                        UserStreet.requestFocus();
-                    } else {
-                        CommonUtils.showShortToast(R.string.Charg_success);
-                    }
-                }
+                return;
+            }
+            String Phone = UserPhone.getText().toString();
+            if (Phone == null) {
+                CommonUtils.showShortToast(R.string.Phone_no_empty);
+                UserPhone.requestFocus();
+                return;
+            }
+            if (Phone.matches("[\\d]{11}")) {
+                CommonUtils.showShortToast(R.string.Charg_Phone_error);
+                UserPhone.requestFocus();
+                return;
+            }
+            String Street = UserStreet.getText().toString();
+            if (Street == null) {
+                CommonUtils.showShortToast(R.string.strrent_no_empty);
+                UserStreet.requestFocus();
+                return;
             }
         }
+        gotoStatement();
+
+
+    }
+
+    private void gotoStatement() {
+
 
     }
 

@@ -24,12 +24,12 @@
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\bundles\\debug\\res\\drawable\\wallet_base_service_squared_item_bg.xml"
     },
     {
-        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\wallet_base_dialog_leftbtn_selector.xml",
-        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\bundles\\debug\\res\\drawable\\wallet_base_dialog_leftbtn_selector.xml"
-    },
-    {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\wallet_base_shape_scrollbar.xml",
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\bundles\\debug\\res\\drawable\\wallet_base_shape_scrollbar.xml"
+    },
+    {
+        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\wallet_base_dialog_leftbtn_selector.xml",
+        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\bundles\\debug\\res\\drawable\\wallet_base_dialog_leftbtn_selector.xml"
     },
     {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\wallet_base_loading_gray.xml",
@@ -112,12 +112,12 @@
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\bundles\\debug\\res\\drawable\\wallet_base_pwdpay_channel_activity_bg.xml"
     },
     {
-        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\wallet_base_refresh_loading.xml",
-        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\bundles\\debug\\res\\drawable\\wallet_base_refresh_loading.xml"
-    },
-    {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\wallet_base_dash_btn_selector.xml",
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\bundles\\debug\\res\\drawable\\wallet_base_dash_btn_selector.xml"
+    },
+    {
+        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\wallet_base_refresh_loading.xml",
+        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\bundles\\debug\\res\\drawable\\wallet_base_refresh_loading.xml"
     },
     {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\bdwallet_pay_sdk\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\wallet_base_select_bank_item_selector.xml",

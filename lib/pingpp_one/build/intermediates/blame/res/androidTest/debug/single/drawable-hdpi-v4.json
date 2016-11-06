@@ -24,24 +24,24 @@
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\cmbkb_backspace_icon.png"
     },
     {
-        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\cmbkb_space_dark.png",
-        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\cmbkb_space_dark.png"
-    },
-    {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\cmbkb_space.png",
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\cmbkb_space.png"
+    },
+    {
+        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\cmbkb_space_dark.png",
+        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\cmbkb_space_dark.png"
     },
     {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\pingpp_back.png",
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\pingpp_back.png"
     },
     {
-        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\tips_bg.9.png",
-        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\tips_bg.9.png"
-    },
-    {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\cmbkb_list_separator.png",
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\cmbkb_list_separator.png"
+    },
+    {
+        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\tips_bg.9.png",
+        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\tips_bg.9.png"
     },
     {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\cmbkb_sym_keyboard_space.png",

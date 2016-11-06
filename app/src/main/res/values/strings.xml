@@ -40,4 +40,6 @@
     <string name="add_goods_success">add goods success</string>
     <string name="add_goods_file">add goods file</string>
     <string name="order_nothing">order nothing</string>
+    <string name="username_no_empty">user no empty</string>
+    <string name="Phone_no_empty">phone no empty</string>
 </resources>

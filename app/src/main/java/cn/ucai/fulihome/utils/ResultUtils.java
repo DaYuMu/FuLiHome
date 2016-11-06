@@ -24,7 +24,7 @@ public class ResultUtils {
     public static ArrayList<CartBean> getCartFromJson(String jsonStr) {
         ArrayList<CartBean> list = null;
         try {
-            if (jsonStr == null || jsonStr.isEmpty() || jsonStr.length() < 3) {
+            if (jsonStr == null || jsonStr.isEmpty() || jsonStr.length()==0) {
                 JSONArray array = new JSONArray(jsonStr);
                 if (array != null) {
                     list = new ArrayList<>();

@@ -177,9 +177,11 @@ public class CartFragment extends BaseFragment {
         orderprice = 0;
         if (mList != null && mList.size() > 0) {
             for (CartBean c : mList) {
-                cartid += c.getId()+"";
-                sumPrice = getPrice(c.getGoods().getCurrencyPrice());
-                rankPrice = getPrice(c.getGoods().getRankPrice());
+                if (c.isChecked()) {
+                    cartid += c.getId()+"";
+                    sumPrice += getPrice(c.getGoods().getCurrencyPrice())*c.getCount();
+                    rankPrice += getPrice(c.getGoods().getRankPrice())*c.getCount();
+                }
             }
             orderprice = rankPrice;
             SumPrice.setText("合计：￥=" + Double.valueOf(rankPrice));
