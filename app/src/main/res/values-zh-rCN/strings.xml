@@ -35,4 +35,6 @@
     <string name="Charg_no_empty">不能为空</string>
     <string name="Charg_Phone_error">手机号码格式错误</string>
     <string name="Charg_success">订单提交成功</string>
+    <string name="add_goods_success">添加商品成功</string>
+    <string name="add_goods_file">添加商品失败</string>
 </resources>

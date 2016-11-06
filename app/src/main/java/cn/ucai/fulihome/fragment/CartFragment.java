@@ -198,6 +198,7 @@ public class CartFragment extends BaseFragment {
         public void onReceive(Context context, Intent intent) {
             L.e(TAG,"UpdateCartBroadcast···");
             sumPrice();
+            setCartLayout(mList!=null&&mList.size()>0);
         }
     }
 
@@ -208,5 +209,11 @@ public class CartFragment extends BaseFragment {
         if (mUpdateCartBroadcast != null) {
             mContext.unregisterReceiver(mUpdateCartBroadcast);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 }

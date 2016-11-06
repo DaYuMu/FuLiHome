@@ -37,4 +37,6 @@
     <string name="Waiting_no_empty">waiting no empty</string>
     <string name="Charg_Phone_error">Charg_Phone_error</string>
     <string name="Charg_success">Charge success</string>
+    <string name="add_goods_success">add goods success</string>
+    <string name="add_goods_file">add goods file</string>
 </resources>
