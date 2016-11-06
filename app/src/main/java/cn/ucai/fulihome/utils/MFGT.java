@@ -121,8 +121,9 @@ public class MFGT {
     public static void gotoCollectActivity(Activity context) {
         startActivity(context,CollectsActivity.class);
     }
-    public static void gotoOrderActivity(Activity context) {
-        startActivity(context,OrderActivity.class);
+    public static void gotoOrderActivity(Activity context,String cartid) {
+        Intent intent = new Intent(context, OrderActivity.class).putExtra(I.Cart.ID, cartid);
+        startActivity(context,intent);
     }
 
 }

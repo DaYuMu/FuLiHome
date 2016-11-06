@@ -63,6 +63,9 @@ public class CartFragment extends BaseFragment {
     TextView NoThing;
     @BindView(R.id.JieSuanTitle)
     RelativeLayout JieSuanTitle;
+    int orderprice;
+
+    String cartid;
 
     UpdateCartBroadcast mUpdateCartBroadcast;
 
@@ -169,15 +172,21 @@ public class CartFragment extends BaseFragment {
 
     private void sumPrice() {
         int sumPrice = 0;
+        cartid = null;
         int rankPrice = 0;
+        orderprice = 0;
         if (mList != null && mList.size() > 0) {
             for (CartBean c : mList) {
+                cartid += c.getId()+"";
                 sumPrice = getPrice(c.getGoods().getCurrencyPrice());
                 rankPrice = getPrice(c.getGoods().getRankPrice());
             }
+            orderprice = rankPrice;
             SumPrice.setText("合计：￥=" + Double.valueOf(rankPrice));
             RankPrice.setText("节省：￥=" + Double.valueOf(sumPrice - rankPrice));
         } else {
+            orderprice = 0;
+            cartid = null;
             SumPrice.setText("合计：￥=0");
             RankPrice.setText("节省：￥=0");
         }
@@ -190,7 +199,11 @@ public class CartFragment extends BaseFragment {
 
     @OnClick(R.id.Charge)
     public void onClick() {
-        MFGT.gotoOrderActivity(mContext);
+        if (cartid!=null&&!cartid.equals("")&&cartid.length()>0) {
+            MFGT.gotoOrderActivity(mContext,cartid);
+        } else {
+            CommonUtils.showLongToast(R.string.order_nothing);
+        }
     }
 
     class UpdateCartBroadcast extends BroadcastReceiver {

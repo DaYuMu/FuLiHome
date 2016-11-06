@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.fulihome.FuLiHomeApplication;
+import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.User;
 import cn.ucai.fulihome.utils.CommonUtils;
@@ -60,7 +61,7 @@ public class OrderActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        String cartid = getIntent().getStringExtra(I.Cart.ID);
     }
 
     @Override
