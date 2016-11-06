@@ -22,6 +22,9 @@ import cn.ucai.fulihome.I;
 import cn.ucai.fulihome.R;
 import cn.ucai.fulihome.bean.CartBean;
 import cn.ucai.fulihome.bean.GoodsDetailsBean;
+import cn.ucai.fulihome.bean.MessageBean;
+import cn.ucai.fulihome.net.NetDao;
+import cn.ucai.fulihome.net.OkHttpUtils;
 import cn.ucai.fulihome.utils.ImageLoader;
 import cn.ucai.fulihome.utils.MFGT;
 
@@ -116,10 +119,23 @@ public class CartAdapter extends Adapter {
             switch (view.getId()) {
                 case R.id.AddCart:
                     //  添加购物车里的商品，改变合计价钱与节省价钱
-                    int position = (int) AddCart.getTag();
-                    mList.get(position).setCount(mList.get(position).getCount()+1);
-                    mContext.sendBroadcast(new Intent(I.BROADCAST_UPDATE_CART));
-                    CartGoodsCount.setText(String.valueOf(mList.get(position).getCount()));
+                    final int position = (int) AddCart.getTag();
+                    CartBean cart = mList.get(position);
+                    NetDao.updataCart(mContext, cart.getId(), cart.getCount() + 1, new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                        @Override
+                        public void onSuccess(MessageBean result) {
+                            if (result != null&&result.isSuccess()) {
+                                mList.get(position).setCount(mList.get(position).getCount()+1);
+                                mContext.sendBroadcast(new Intent(I.BROADCAST_UPDATE_CART));
+                                CartGoodsCount.setText(String.valueOf(mList.get(position).getCount()));
+                            }
+                        }
+
+                        @Override
+                        public void onError(String error) {
+
+                        }
+                    });
                     break;
                 case R.id.DeleteCart:
                     //  删除购物车里的商品，改变合计价钱与节省价钱，物品最少只能为1。
