@@ -32,7 +32,7 @@ public class CartAdapter extends Adapter {
 
     public CartAdapter(Context mContext, ArrayList<CartBean> List) {
         this.mContext = mContext;
-        mList = List;
+        List = mList;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class CartAdapter extends Adapter {
             cartViewHolder.CartGoodTitle.setText(goods.getGoodsName());
             cartViewHolder.CartGoodsPrice.setText(goods.getCurrencyPrice());
         }
-        cartViewHolder.CartGoodsCount.setTag(cartBean.getCount());
+        cartViewHolder.CartGoodsCount.setText(String.valueOf(cartBean.getCount()));
 //        cartViewHolder.Check   设置为不选择状态
         cartViewHolder.CheckBox.setChecked(false);
         cartViewHolder.CheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -62,7 +62,7 @@ public class CartAdapter extends Adapter {
                 mContext.sendBroadcast(new Intent(I.BROADCAST_UPDATE_CART));
             }
         });
-
+        cartViewHolder.AddCart.setTag(position);
     }
 
     @OnClick({R.id.ivCartGood, R.id.CartGoodTitle, R.id.CartGoodsPrice})
@@ -85,9 +85,6 @@ public class CartAdapter extends Adapter {
         notifyDataSetChanged();
     }
 
-    @OnClick(R.id.CheckBox)
-    public void onClick() {
-    }
 
 
     class CartViewHolder extends ViewHolder {
@@ -114,18 +111,23 @@ public class CartAdapter extends Adapter {
             super(view);
             ButterKnife.bind(this, view);
         }
-    }
-
-
-    @OnClick({R.id.AddCart, R.id.DeleteCart})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.AddCart:
-                //  添加购物车里的商品，改变合计价钱与节省价钱
-                break;
-            case R.id.DeleteCart:
-                //  删除购物车里的商品，改变合计价钱与节省价钱，物品最少只能为1。
-                break;
+        @OnClick({R.id.AddCart, R.id.DeleteCart})
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.AddCart:
+                    //  添加购物车里的商品，改变合计价钱与节省价钱
+                    int position = (int) AddCart.getTag();
+                    mList.get(position).setCount(mList.get(position).getCount()+1);
+                    mContext.sendBroadcast(new Intent(I.BROADCAST_UPDATE_CART));
+                    CartGoodsCount.setText(String.valueOf(mList.get(position).getCount()));
+                    break;
+                case R.id.DeleteCart:
+                    //  删除购物车里的商品，改变合计价钱与节省价钱，物品最少只能为1。
+                    break;
+            }
         }
     }
+
+
+
 }

@@ -24,12 +24,12 @@
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable\\cmbkb_btn_keyboard_key.xml"
     },
     {
-        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\release\\drawable\\pingpp_unipay.png",
-        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\res\\drawable\\pingpp_unipay.png"
-    },
-    {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\release\\drawable\\pingpp_common_pay_button_green.xml",
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\res\\drawable\\pingpp_common_pay_button_green.xml"
+    },
+    {
+        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\release\\drawable\\pingpp_unipay.png",
+        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\res\\drawable\\pingpp_unipay.png"
     },
     {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\release\\drawable\\pingpp_jingdongpay.png",

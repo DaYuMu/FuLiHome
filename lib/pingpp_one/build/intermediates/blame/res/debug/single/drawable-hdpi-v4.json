@@ -36,12 +36,12 @@
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\cmbkb_space_dark.png"
     },
     {
-        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\cmbkb_backspace_dark_icon.png",
-        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\cmbkb_backspace_dark_icon.png"
-    },
-    {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\cmbkb_shift_actived.png",
         "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\cmbkb_shift_actived.png"
+    },
+    {
+        "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\cmbkb_backspace_dark_icon.png",
+        "source": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiHome.lib\\pingpp\\unspecified\\res\\drawable-hdpi-v4\\cmbkb_backspace_dark_icon.png"
     },
     {
         "merged": "E:\\Android\\AndroidStudioProjects\\FuLiHome\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\cmbkb_sym_keyboard_space.png",
