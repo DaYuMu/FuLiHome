@@ -164,6 +164,7 @@ public class CartFragment extends BaseFragment {
         JieSuanTitle.setVisibility(hascart ? View.VISIBLE : View.GONE);
         NoThing.setVisibility(hascart ? View.GONE : View.VISIBLE);
         fragmentRecyclerViewNewGoods.setVisibility(hascart ? View.VISIBLE : View.GONE);
+//        sumPrice();
     }
 
     private void sumPrice() {

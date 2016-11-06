@@ -57,7 +57,7 @@ public class CartAdapter extends Adapter {
         }
         cartViewHolder.CartGoodsCount.setText(String.valueOf(cartBean.getCount()));
 //        cartViewHolder.Check   设置为不选择状态
-        cartViewHolder.CheckBox.setChecked(false);
+        cartViewHolder.CheckBox.setChecked(cartBean.isChecked());
         cartViewHolder.CheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -138,7 +138,42 @@ public class CartAdapter extends Adapter {
                     });
                     break;
                 case R.id.DeleteCart:
+                    final int delposition = (int) AddCart.getTag();
+                    CartBean delcart = mList.get(delposition);
                     //  删除购物车里的商品，改变合计价钱与节省价钱，物品最少只能为1。
+                    if (delcart.getCount() > 1) {
+                        NetDao.updataCart(mContext, delcart.getId(), delcart.getCount()-1, new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                            @Override
+                            public void onSuccess(MessageBean result) {
+                                if (result != null && result.isSuccess()) {
+                                    mList.get(delposition).setCount(mList.get(delposition).getCount() - 1);
+                                    mContext.sendBroadcast(new Intent(I.BROADCAST_UPDATE_CART));
+                                    CartGoodsCount.setText(String.valueOf(mList.get(delposition).getCount()));
+                                }
+                            }
+
+                            @Override
+                            public void onError(String error) {
+
+                            }
+                        });
+                    } else {
+                        NetDao.deleteCart(mContext, delcart.getId(), new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                            @Override
+                            public void onSuccess(MessageBean result) {
+                                if (result != null && result.isSuccess()) {
+                                    mList.remove(delposition);
+                                    mContext.sendBroadcast(new Intent(I.BROADCAST_UPDATE_CART));
+                                    notifyDataSetChanged();
+                                }
+                            }
+
+                            @Override
+                            public void onError(String error) {
+
+                            }
+                        });
+                    }
                     break;
             }
         }
